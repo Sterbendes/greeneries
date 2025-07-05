@@ -8,7 +8,7 @@
   "icon": "icon.png",
   "entrypoints": {
     "main": [
-      "net.yourpackage.yourmod.MyModFabric"
+      "net.sterbendes.greeneries.ModFabric"
     ]
   },
   "mixins": [

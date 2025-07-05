@@ -1,4 +1,4 @@
-rootProject.name = "multiloader-mod-template" // TODO: replace with your mod id
+rootProject.name = "greeneries"
 
 pluginManagement {
     repositories {
