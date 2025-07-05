@@ -9,7 +9,7 @@ import java.util.function.Supplier;
 
 public class GreeneriesMod {
 
-    static final String modID = "my_mod_id";
+    static final String modID = "greeneries";
     @UnknownNullability
     static GreeneriesPlatform platform;
 
