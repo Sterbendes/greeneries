@@ -1,0 +1,28 @@
+modLoader = "javafml"
+loaderVersion = "${neo_loader_version_range}"
+
+license = "${mod_license}"
+
+[[mods]]
+modId = "${mod_id}"
+version = "${mod_version}"
+displayName = "${mod_name}"
+
+logoFile = "icon.png"
+description = '''${mod_description}'''
+
+[[dependencies.${mod_id}]]
+modId = "minecraft"
+type = "required"
+versionRange = "${mc_versions_neo}"
+
+# Specify additional dependencies like this:
+#[[dependencies.${mod_id}]]
+#modId = "my_dependency_mod"
+#mandatory = true # if the dependency is optional or required
+#versionRange = "[min_version,max_version)" # maven version range of the dependency
+#side = "BOTH" # required on both client and server
+
+# Add mixin configuration like this:
+#[[mixins]]
+#config = "mymod.mixins.json"

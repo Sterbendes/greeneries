@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "name": "${mod_name}",
+  "description": "${mod_description}",
+  "version": "${mod_version}",
+  "license": "${mod_license}",
+  "icon": "icon.png",
+  "entrypoints": {
+    "main": [
+      "net.yourpackage.yourmod.MyModFabric"
+    ]
+  },
+  "mixins": [
+
+  ],
+  "depends": {
+    "minecraft": "${mc_versions_fabric}"
+  }
+}
