@@ -17,7 +17,8 @@ public class GreeneriesMod {
         System.out.println("Hi from example mod!");
 
         GreeneriesMod.platform = platform;
-        // Your common initialisation code here
+        ModBlocks.init();
+        ModCreativeTabs.init();
     }
 
     static <T> Holder<T> register(String name, Registry<T> registry, Supplier<T> obj) {

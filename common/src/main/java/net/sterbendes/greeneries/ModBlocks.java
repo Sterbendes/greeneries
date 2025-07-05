@@ -8,6 +8,9 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.TallGrassBlock;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Supplier;
@@ -15,6 +18,9 @@ import java.util.function.Supplier;
 import static net.sterbendes.greeneries.GreeneriesMod.platform;
 
 public abstract class ModBlocks {
+
+    public static Holder<Block> red_fescue = register("red_fescue", true, RenderType.cutout(),
+        () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { });
 
     private static @NotNull Holder<Block> register(String name, boolean registerItem, RenderType renderType,
                                                    Supplier<Block> block) {
