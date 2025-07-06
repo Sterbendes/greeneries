@@ -1,28 +1,30 @@
 {
 	"format_version": "1.9.0",
 	"credit": "Made with Blockbench",
+	"ambientocclusion": false,
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "block/texture",
-		"particle": "block/texture"
+		"1": "greeneries:block/medium_red_fescue"
 	},
 	"elements": [
 		{
-			"from": [-6, 0, 6],
-			"to": [10, 24, 6],
-			"rotation": {"angle": 45, "axis": "y", "origin": [-6, 0, 6]},
+			"from": [2, 0, 14],
+			"to": [19, 25, 14],
+			"shade": false,
+			"rotation": {"angle": 45, "axis": "y", "origin": [2, 0, 14]},
 			"faces": {
-				"north": {"uv": [0, 0, 8, 12], "texture": "#0"},
-				"south": {"uv": [8, 0, 16, 12], "texture": "#0"}
+				"north": {"uv": [0, 0, 8, 12], "texture": "#1","tintindex": 0},
+				"south": {"uv": [0, 0, 8, 12], "texture": "#1","tintindex": 0}
 			}
 		},
 		{
-			"from": [-6, 0, -6],
-			"to": [10, 24, -6],
-			"rotation": {"angle": -45, "axis": "y", "origin": [-6, 0, -6]},
+			"from": [2, 0, 2],
+			"to": [19, 25, 2],
+			"shade": false,
+			"rotation": {"angle": -45, "axis": "y", "origin": [2, 0, 2]},
 			"faces": {
-				"north": {"uv": [0, 0, 8, 12], "texture": "#0"},
-				"south": {"uv": [0, 0, 8, 12], "texture": "#0"}
+				"north": {"uv": [0, 0, 8, 12], "texture": "#1","tintindex": 0},
+				"south": {"uv": [0, 0, 8, 12], "texture": "#1","tintindex": 0}
 			}
 		}
 	]
