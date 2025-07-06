@@ -37,6 +37,10 @@ public abstract class ModBlocks {
         RenderType.cutout(), () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { },
         GRASS_BLOCK_COLOR, PLAINS_FOLIAGE_COLOR);
 
+    public static Holder<Block> medium_red_fescue = register("medium_red_fescue", true,
+        RenderType.cutout(), () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { },
+        GRASS_BLOCK_COLOR, PLAINS_FOLIAGE_COLOR);
+
     public static Holder<Block> bushy_red_fescue = register("bushy_red_fescue", true,
         RenderType.cutout(), () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { },
         GRASS_BLOCK_COLOR, PLAINS_FOLIAGE_COLOR);
