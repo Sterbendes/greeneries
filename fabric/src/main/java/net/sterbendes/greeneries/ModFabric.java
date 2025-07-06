@@ -1,6 +1,7 @@
 package net.sterbendes.greeneries;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
@@ -10,10 +11,15 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.levelgen.GenerationStep;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
@@ -22,9 +28,16 @@ import java.util.function.Supplier;
 
 public class ModFabric implements ModInitializer {
 
+    public static final ResourceKey<PlacedFeature> GRASS_FEATURE_REGISTRY_KEY = ResourceKey.create(
+        Registries.PLACED_FEATURE, ResourceLocation.parse("greeneries:patch_red_fescue"));
+
     @Override
     public void onInitialize() {
         GreeneriesMod.init(new GreeneriesFabricPlatform());
+
+        BiomeModifications.addFeature(biomeSelectionContext ->
+                biomeSelectionContext.getBiomeKey().location().toString().equals("minecraft:plains"),
+            GenerationStep.Decoration.VEGETAL_DECORATION, GRASS_FEATURE_REGISTRY_KEY);
     }
 
     private static class GreeneriesFabricPlatform implements GreeneriesPlatform {
