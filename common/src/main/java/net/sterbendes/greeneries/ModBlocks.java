@@ -53,3 +53,6 @@ public abstract class ModBlocks {
 
     static void init() { }
 }
+
+//net.minecraft.client.color.block.BlockColors
+// -> für colormaps

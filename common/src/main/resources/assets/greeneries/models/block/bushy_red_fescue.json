@@ -1,0 +1,6 @@
+{
+  "parent": "greeneries:block/custommodels/os_tinted_cross",
+  "textures": {
+    "cross": "greeneries:block/red_fescue"
+  }
+}
