@@ -4,7 +4,7 @@
 	"ambientocclusion": false,
 	"texture_size": [32, 32],
 	"textures": {
-		"1": "greeneries:block/medium_red_fescue"
+        "particle": "#cross"
 	},
 	"elements": [
 		{
@@ -13,8 +13,8 @@
 			"shade": false,
 			"rotation": {"angle": 45, "axis": "y", "origin": [2, 0, 14]},
 			"faces": {
-				"north": {"uv": [0, 0, 8, 12], "texture": "#1","tintindex": 0},
-				"south": {"uv": [0, 0, 8, 12], "texture": "#1","tintindex": 0}
+				"north": {"uv": [0, 0, 8, 12], "texture": "#cross","tintindex": 0},
+				"south": {"uv": [0, 0, 8, 12], "texture": "#cross","tintindex": 0}
 			}
 		},
 		{
@@ -23,8 +23,8 @@
 			"shade": false,
 			"rotation": {"angle": -45, "axis": "y", "origin": [2, 0, 2]},
 			"faces": {
-				"north": {"uv": [0, 0, 8, 12], "texture": "#1","tintindex": 0},
-				"south": {"uv": [0, 0, 8, 12], "texture": "#1","tintindex": 0}
+				"north": {"uv": [0, 0, 8, 12], "texture": "#cross","tintindex": 0},
+				"south": {"uv": [0, 0, 8, 12], "texture": "#cross","tintindex": 0}
 			}
 		}
 	]
