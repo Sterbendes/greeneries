@@ -1,0 +1,51 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "feature": {
+      "feature": {
+        "type": "minecraft:simple_block",
+        "config": {
+          "to_place": {
+            "type": "minecraft:weighted_state_provider",
+            "entries": [
+              {
+                "weight": 10,
+                "data": {
+                  "Name": "greeneries:short_red_fescue"
+                }
+              },
+              {
+                "weight": 5,
+                "data": {
+                  "Name": "greeneries:bushy_red_fescue"
+                }
+              },
+              {
+                "weight": 7,
+                "data": {
+                  "Name": "greeneries:very_short_red_fescue"
+                }
+              }
+            ]
+          }
+        }
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "minecraft:matching_blocks",
+            "blocks": [
+              "minecraft:air",
+              "minecraft:short_grass",
+              "minecraft:tall_grass"
+            ]
+          }
+        }
+      ]
+    },
+    "tries": 24,
+    "xz_spread": 4,
+    "y_spread": 3
+  }
+}
