@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "greeneries:block/red_fescue"
+    "layer0": "greeneries:item/bushy_red_fescue"
   }
 }

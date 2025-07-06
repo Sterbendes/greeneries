@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/tinted_cross",
   "textures": {
-    "cross": "greeneries:block/shortred_fescue"
+    "cross": "greeneries:block/short_red_fescue"
   }
 }
