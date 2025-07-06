@@ -26,12 +26,12 @@ public abstract class ModBlocks {
             ? BiomeColors.getAverageGrassColor(blockAndTintGetter, blockPos)
             : FoliageColor.getDefaultColor();
 
-    public static final ItemColor GRASS_ITEM_COLOR = (stack, i) -> FoliageColor.getEvergreenColor();
+    public static final ItemColor PLAINS_FOLIAGE_COLOR = (stack, i) -> FoliageColor.get(0.8, 0.4);
 
 
     public static Holder<Block> red_fescue = register("red_fescue", true, RenderType.cutout(),
         () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { },
-        GRASS_BLOCK_COLOR, GRASS_ITEM_COLOR);
+        GRASS_BLOCK_COLOR, PLAINS_FOLIAGE_COLOR);
 
 
     private static @NotNull Holder<Block> register(String name, boolean registerItem, RenderType renderType,
