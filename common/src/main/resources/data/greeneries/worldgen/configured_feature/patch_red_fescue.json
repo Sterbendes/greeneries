@@ -25,6 +25,12 @@
                 "data": {
                   "Name": "greeneries:very_short_red_fescue"
                 }
+              },
+              {
+                "weight": 2,
+                "data": {
+                  "Name": "greeneries:medium_red_fescue"
+                }
               }
             ]
           }
@@ -44,8 +50,8 @@
         }
       ]
     },
-    "tries": 24,
-    "xz_spread": 4,
+    "tries": 32,
+    "xz_spread": 3,
     "y_spread": 3
   }
 }
