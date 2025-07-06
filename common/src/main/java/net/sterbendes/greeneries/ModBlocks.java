@@ -23,24 +23,16 @@ public abstract class ModBlocks {
 
     public static final BlockColor GRASS_BLOCK_COLOR =
         (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null
-            ? BiomeColors.getAverageFoliageColor(blockAndTintGetter, blockPos)
+            ? BiomeColors.getAverageGrassColor(blockAndTintGetter, blockPos)
             : FoliageColor.getDefaultColor();
 
-    public static final ItemColor GRASS_ITEM_COLOR = (stack, i) -> FoliageColor.getDefaultColor();
+    public static final ItemColor GRASS_ITEM_COLOR = (stack, i) -> FoliageColor.getEvergreenColor();
 
 
     public static Holder<Block> red_fescue = register("red_fescue", true, RenderType.cutout(),
         () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { },
         GRASS_BLOCK_COLOR, GRASS_ITEM_COLOR);
 
-
-    private static @NotNull Holder<Block> register(String name, boolean registerItem, RenderType renderType,
-                                                   Supplier<Block> block) {
-        var holder = register(name, registerItem, block);
-        platform.setRenderLayer(holder::value, renderType);
-
-        return holder;
-    }
 
     private static @NotNull Holder<Block> register(String name, boolean registerItem, RenderType renderType,
                                                    Supplier<Block> block, BlockColor color, ItemColor itemColor) {
