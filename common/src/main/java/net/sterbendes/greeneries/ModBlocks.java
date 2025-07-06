@@ -29,11 +29,11 @@ public abstract class ModBlocks {
     public static final ItemColor PLAINS_FOLIAGE_COLOR = (stack, i) -> FoliageColor.get(0.8, 0.4);
 
 
-    public static Holder<Block> red_fescue = register("red_fescue", true, RenderType.cutout(),
-        () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { },
+    public static Holder<Block> short_red_fescue = register("short_red_fescue", true,
+        RenderType.cutout(), () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { },
         GRASS_BLOCK_COLOR, PLAINS_FOLIAGE_COLOR);
 
-    public static Holder<Block> short_red_fescue = register("short_red_fescue", true,
+    public static Holder<Block> very_short_red_fescue = register("very_short_red_fescue", true,
         RenderType.cutout(), () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { },
         GRASS_BLOCK_COLOR, PLAINS_FOLIAGE_COLOR);
 

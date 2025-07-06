@@ -16,7 +16,7 @@ public abstract class ModCreativeTabs {
     public static final Holder<CreativeModeTab> greeneries_tab = GreeneriesMod.register(
         "greeneries_tab", BuiltInRegistries.CREATIVE_MODE_TAB,
         () -> platform.creativeTabBuilder()
-            .icon(() -> new ItemStack(ModBlocks.red_fescue.value()))
+            .icon(() -> new ItemStack(ModBlocks.short_red_fescue.value()))
             .title(Component.literal("Greeneries"))
             .displayItems((params, output) -> {
                 for (ItemLike item : getAllGreeneriesItems()) output.accept(item);
@@ -26,7 +26,7 @@ public abstract class ModCreativeTabs {
     @Contract(" -> new")
     public static ItemLike @NotNull [] getAllGreeneriesItems() {
         return new ItemLike[]{
-            ModBlocks.red_fescue.value(), ModBlocks.short_red_fescue.value(), ModBlocks.bushy_red_fescue.value()
+            ModBlocks.short_red_fescue.value(), ModBlocks.very_short_red_fescue.value(), ModBlocks.bushy_red_fescue.value()
         };
     }
 
