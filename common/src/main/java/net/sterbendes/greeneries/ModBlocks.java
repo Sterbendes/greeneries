@@ -2,11 +2,13 @@ package net.sterbendes.greeneries;
 
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.TallGrassBlock;
@@ -19,8 +21,18 @@ import static net.sterbendes.greeneries.GreeneriesMod.platform;
 
 public abstract class ModBlocks {
 
+    public static final BlockColor GRASS_BLOCK_COLOR =
+        (blockState, blockAndTintGetter, blockPos, i) -> blockAndTintGetter != null && blockPos != null
+            ? BiomeColors.getAverageFoliageColor(blockAndTintGetter, blockPos)
+            : FoliageColor.getDefaultColor();
+
+    public static final ItemColor GRASS_ITEM_COLOR = (stack, i) -> FoliageColor.getDefaultColor();
+
+
     public static Holder<Block> red_fescue = register("red_fescue", true, RenderType.cutout(),
-        () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { });
+        () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { },
+        GRASS_BLOCK_COLOR, GRASS_ITEM_COLOR);
+
 
     private static @NotNull Holder<Block> register(String name, boolean registerItem, RenderType renderType,
                                                    Supplier<Block> block) {
@@ -53,6 +65,3 @@ public abstract class ModBlocks {
 
     static void init() { }
 }
-
-//net.minecraft.client.color.block.BlockColors
-// -> für colormaps
