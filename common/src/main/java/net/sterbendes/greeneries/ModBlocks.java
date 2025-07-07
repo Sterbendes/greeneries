@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
@@ -26,7 +26,7 @@ import static net.sterbendes.greeneries.GreeneriesMod.platform;
 
 public abstract class ModBlocks {
 
-    private static final Map<String, Holder<Block>> allGreeneriesBlocks = new HashMap<>();
+    private static final Map<String, Holder<Block>> allGreeneriesBlocks = new LinkedHashMap<>();
 
     public static final BlockColor VARYING_GRASS_BLOCK_COLOR = (blockState, blockAndTintGetter, blockPos, i) -> {
         var color = blockAndTintGetter != null && blockPos != null
