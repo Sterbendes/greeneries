@@ -1,7 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "greeneries:block/short_common_bent",
-    "layer1": "greeneries:block/short_common_bent_overlay"
+    "layer0": "greeneries:item/short_common_bent"
   }
 }
