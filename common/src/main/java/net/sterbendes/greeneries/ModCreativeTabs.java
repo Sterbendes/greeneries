@@ -26,7 +26,8 @@ public abstract class ModCreativeTabs {
     @Contract(" -> new")
     public static ItemLike @NotNull [] getAllGreeneriesItems() {
         return new ItemLike[]{
-            ModBlocks.short_red_fescue.value(), ModBlocks.very_short_red_fescue.value(), ModBlocks.bushy_red_fescue.value(), ModBlocks.medium_red_fescue.value()
+            ModBlocks.short_red_fescue.value(), ModBlocks.very_short_red_fescue.value(), ModBlocks.bushy_red_fescue.value(), ModBlocks.medium_red_fescue.value(),
+            ModBlocks.short_common_bent.value(), ModBlocks.very_short_common_bent.value(), ModBlocks.bushy_common_bent.value()
         };
     }
 
