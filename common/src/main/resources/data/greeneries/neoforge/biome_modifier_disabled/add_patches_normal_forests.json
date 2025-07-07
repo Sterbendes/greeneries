@@ -1,6 +1,6 @@
 {
   "type": "neoforge:add_features",
   "biomes": "#minecraft:is_forest",
-  "features": "#greeneries:patches_forests",
+  "features": "#greeneries:patches_normal_forests",
   "step": "vegetal_decoration"
 }

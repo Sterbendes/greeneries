@@ -9,7 +9,7 @@
             "type": "minecraft:weighted_state_provider",
             "entries": [
               {
-                "weight": 10,
+                "weight": 12,
                 "data": {
                   "Name": "greeneries:short_red_fescue"
                 }
@@ -49,8 +49,8 @@
         }
       ]
     },
-    "tries": 32,
-    "xz_spread": 3,
-    "y_spread": 3
+    "tries": 16,
+    "xz_spread": 2,
+    "y_spread": 2
   }
 }

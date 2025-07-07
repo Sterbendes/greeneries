@@ -2,10 +2,6 @@
   "feature": "greeneries:patch_red_fescue",
   "placement": [
     {
-      "type": "rarity_filter",
-      "chance": 8
-    },
-    {
       "type": "minecraft:in_square"
     },
     {

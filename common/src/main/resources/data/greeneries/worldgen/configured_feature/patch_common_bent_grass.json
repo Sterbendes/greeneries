@@ -9,27 +9,21 @@
             "type": "minecraft:weighted_state_provider",
             "entries": [
               {
-                "weight": 10,
-                "data": {
-                  "Name": "greeneries:short_red_fescue"
-                }
-              },
-              {
                 "weight": 5,
                 "data": {
-                  "Name": "greeneries:bushy_red_fescue"
+                  "Name": "greeneries:short_common_bent"
                 }
               },
               {
-                "weight": 7,
+                "weight": 3,
                 "data": {
-                  "Name": "greeneries:very_short_red_fescue"
+                  "Name": "greeneries:very_short_common_bent"
                 }
               },
               {
                 "weight": 2,
                 "data": {
-                  "Name": "greeneries:medium_red_fescue"
+                  "Name": "greeneries:bushy_common_bent"
                 }
               }
             ]
