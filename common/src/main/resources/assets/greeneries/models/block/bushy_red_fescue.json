@@ -1,5 +1,5 @@
 {
-  "parent": "greeneries:block/custommodels/os_tinted_cross",
+  "parent": "greeneries:block/custommodels/bushy_tinted_cross",
   "textures": {
     "cross": "greeneries:block/short_red_fescue"
   }
