@@ -47,7 +47,7 @@ public abstract class ModBlocks {
 
     static {
         registerGrass("red_fescue", "very_short", "short", "bushy", "medium");
-        registerGrass("common_bent", "very_short", "short", "bushy");
+        registerGrassWithOverlay("common_bent", "very_short", "short", "bushy");
     }
 
 
@@ -56,6 +56,15 @@ public abstract class ModBlocks {
             register(variant + "_" + name, true, RenderType.cutout(),
                 () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { },
                 VARYING_GRASS_BLOCK_COLOR, PLAINS_FOLIAGE_COLOR);
+        }
+    }
+
+    public static void registerGrassWithOverlay(String name, String... variants) {
+        for (var variant : variants) {
+            register(variant + "_" + name, true, RenderType.cutout(),
+                    () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { },
+                    VARYING_GRASS_BLOCK_COLOR, (stack, i) -> FoliageColor.get(-1, -1));
+            //hab keine Ahnung wie das geht, dass keine Farbe drübergelegt wird hilfe :(
         }
     }
 
