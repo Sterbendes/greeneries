@@ -40,11 +40,15 @@ public abstract class ModBlocks {
     public static final ItemColor PLAINS_FOLIAGE_COLOR = (stack, i) -> FoliageColor.get(0.8, 0.4);
 
 
+    public static final Holder<Block> very_short_red_fescue = register("very_short_red_fescue", true,
+        RenderType.cutout(), () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { },
+        VARYING_GRASS_BLOCK_COLOR, PLAINS_FOLIAGE_COLOR);
+
     public static final Holder<Block> short_red_fescue = register("short_red_fescue", true,
         RenderType.cutout(), () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { },
         VARYING_GRASS_BLOCK_COLOR, PLAINS_FOLIAGE_COLOR);
 
-    public static final Holder<Block> very_short_red_fescue = register("very_short_red_fescue", true,
+    public static final Holder<Block> bushy_red_fescue = register("bushy_red_fescue", true,
         RenderType.cutout(), () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { },
         VARYING_GRASS_BLOCK_COLOR, PLAINS_FOLIAGE_COLOR);
 
@@ -52,7 +56,16 @@ public abstract class ModBlocks {
         RenderType.cutout(), () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { },
         VARYING_GRASS_BLOCK_COLOR, PLAINS_FOLIAGE_COLOR);
 
-    public static final Holder<Block> bushy_red_fescue = register("bushy_red_fescue", true,
+
+    public static final Holder<Block> very_short_common_bent = register("very_short_common_bent", true,
+        RenderType.cutout(), () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { },
+        VARYING_GRASS_BLOCK_COLOR, PLAINS_FOLIAGE_COLOR);
+
+    public static final Holder<Block> short_common_bent = register("short_common_bent", true,
+        RenderType.cutout(), () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { },
+        VARYING_GRASS_BLOCK_COLOR, PLAINS_FOLIAGE_COLOR);
+
+    public static final Holder<Block> bushy_common_bent = register("bushy_common_bent", true,
         RenderType.cutout(), () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { },
         VARYING_GRASS_BLOCK_COLOR, PLAINS_FOLIAGE_COLOR);
 
