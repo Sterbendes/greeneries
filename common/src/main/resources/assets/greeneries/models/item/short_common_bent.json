@@ -1,7 +1,7 @@
 {
-  "parent": "greeneries:block/custommodels/short_tinted_cross_with_overlay",
+  "parent": "item/generated",
   "textures": {
-    "cross": "greeneries:block/short_common_bent",
-    "overlay": "greeneries:block/short_common_bent_overlay"
+    "layer0": "greeneries:block/short_common_bent",
+    "layer1": "greeneries:block/short_common_bent_overlay"
   }
 }

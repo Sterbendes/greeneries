@@ -1,6 +1,7 @@
 {
-  "parent": "minecraft:block/tinted_cross",
+  "parent": "greeneries:block/custommodels/tinted_cross_with_overlay",
   "textures": {
-    "cross": "greeneries:block/very_short_common_bent"
+    "cross": "greeneries:block/very_short_common_bent",
+    "overlay": "greeneries:block/very_short_common_bent_overlay"
   }
 }
