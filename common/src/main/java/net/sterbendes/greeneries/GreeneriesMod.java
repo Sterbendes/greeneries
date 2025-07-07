@@ -15,8 +15,6 @@ public class GreeneriesMod {
     static GreeneriesPlatform platform;
 
     static void init(GreeneriesPlatform platform) {
-        System.out.println("Hi from example mod!");
-
         GreeneriesMod.platform = platform;
         ModBlocks.init();
         ModCreativeTabs.init();
