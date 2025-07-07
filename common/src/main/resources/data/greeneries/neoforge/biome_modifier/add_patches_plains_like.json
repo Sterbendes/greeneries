@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#c:is_plains",
+  "features": "#greeneries:patches_plains",
+  "step": "vegetal_decoration"
+}

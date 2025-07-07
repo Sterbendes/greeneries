@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#c:is_sparse_vegetation/overworld",
+  "features": "#greeneries:patches_sparse",
+  "step": "vegetal_decoration"
+}
