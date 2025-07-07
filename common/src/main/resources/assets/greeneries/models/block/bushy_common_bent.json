@@ -1,0 +1,6 @@
+{
+  "parent": "greeneries:block/custommodels/bushy_tinted_cross",
+  "textures": {
+    "cross": "greeneries:block/short_common_bent"
+  }
+}
