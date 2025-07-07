@@ -15,12 +15,10 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.TallGrassBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.function.Supplier;
 
 import static net.sterbendes.greeneries.GreeneriesMod.platform;
 
@@ -47,33 +45,29 @@ public abstract class ModBlocks {
 
     static {
         registerGrass("red_fescue", "very_short", "short", "bushy", "medium");
-        registerGrass("common_bent", "very_short", "short", "bushy");
+        registerGrass("common_bent", true, false, "very_short", "short", "bushy");
     }
 
 
     public static void registerGrass(String name, String... variants) {
-        for (var variant : variants) {
-            register(variant + "_" + name, true, RenderType.cutout(),
-                () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { },
-                VARYING_GRASS_BLOCK_COLOR, PLAINS_FOLIAGE_COLOR);
-        }
+        registerGrass(name, true, true, variants);
     }
 
-    private static @NotNull Holder<Block> register(String name, boolean registerItem, RenderType renderType,
-                                                   Supplier<Block> block, BlockColor color, ItemColor itemColor) {
-        var holder = GreeneriesMod.register(name, BuiltInRegistries.BLOCK, block);
-        if (registerItem)
+    public static void registerGrass(String name, boolean tintBlock, boolean tintItem, String... variants) {
+        for (var variant : variants) {
+            var holder = GreeneriesMod.register(variant + "_" + name, BuiltInRegistries.BLOCK,
+                () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { });
             GreeneriesMod.register(
-                name, BuiltInRegistries.ITEM,
+                variant + "_" + name, BuiltInRegistries.ITEM,
                 () -> new BlockItem(holder.value(), new Item.Properties())
             );
 
-        platform.setRenderLayer(holder::value, renderType);
-        platform.setBlockColor(holder::value, color);
-        if (registerItem) platform.setItemColor(holder::value, itemColor);
+            platform.setRenderLayer(holder::value, RenderType.cutout());
+            if (tintBlock) platform.setBlockColor(holder::value, VARYING_GRASS_BLOCK_COLOR);
+            if (tintItem) platform.setItemColor(holder::value, PLAINS_FOLIAGE_COLOR);
 
-        allGreeneriesBlocks.put(name, holder);
-        return holder;
+            allGreeneriesBlocks.put(variant + "_" + name, holder);
+        }
     }
 
     public static Collection<Holder<Block>> getAllGreeneriesBlocks() {
