@@ -2,6 +2,12 @@
   "feature": "greeneries:patch_common_bent_grass",
   "placement": [
     {
+      "type": "minecraft:noise_threshold_count",
+      "above_noise": 4,
+      "below_noise": 1,
+      "noise_level": 0.75
+    },
+    {
       "type": "minecraft:in_square"
     },
     {

@@ -39,13 +39,12 @@ public class ModFabric implements ModInitializer {
         GreeneriesMod.init(new GreeneriesFabricPlatform());
     }
 
-    private static Map<TagKey<Biome>, TagKey<PlacedFeature>> getBiomeTagToFeatureTag() {
+    private static Map<TagKey<Biome>, TagKey<PlacedFeature>> getAddedFeaturesMap() {
         var strings = Map.of(
             "c:is_dry/overworld", "greeneries:patches_dry",
             "c:is_jungle", "greeneries:patches_jungles",
             "minecraft:is_forest", "greeneries:patches_normal_forests",
             "c:is_plains", "greeneries:patches_plains",
-            "c:is_sparse_vegetation/overworld", "greeneries:patches_sparse_vegetation",
             "c:is_taiga", "greeneries:patches_taigas"
         );
 
@@ -59,7 +58,7 @@ public class ModFabric implements ModInitializer {
 
     @ApiStatus.Internal
     public static void doBiomeModifications(MinecraftServer server) {
-        getBiomeTagToFeatureTag().forEach((biomeTag, featureTagKey) -> {
+        getAddedFeaturesMap().forEach((biomeTag, featureTagKey) -> {
             var placedFeatureRegistry = server.registryAccess().registryOrThrow(Registries.PLACED_FEATURE);
 
             for (var featureHolder : placedFeatureRegistry.getTagOrEmpty(featureTagKey)) {
