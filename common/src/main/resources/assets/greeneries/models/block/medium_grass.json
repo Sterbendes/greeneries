@@ -1,0 +1,6 @@
+{
+  "parent": "greeneries:block/custommodels/medium_tinted_cross",
+  "textures": {
+    "cross": "greeneries:block/medium_grass"
+  }
+}

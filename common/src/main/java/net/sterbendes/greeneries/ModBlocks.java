@@ -46,6 +46,7 @@ public abstract class ModBlocks {
 
 
     static {
+        registerGrass("grass", "very_short", "bushy", "medium");
         registerGrass("red_fescue", "very_short", "short", "bushy", "medium");
         registerGrass("common_bent", true, false, "very_short", "short", "bushy");
     }

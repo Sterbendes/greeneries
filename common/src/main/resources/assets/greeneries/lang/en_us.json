@@ -6,5 +6,9 @@
 
   "block.greeneries.short_common_bent": "Short Common Bent",
   "block.greeneries.very_short_common_bent":"Very Short Common Bent",
-  "block.greeneries.bushy_common_bent": "Bushy Common Bent"
+  "block.greeneries.bushy_common_bent": "Bushy Common Bent",
+
+  "block.greeneries.very_short_grass": "Very Short Grass",
+  "block.greeneries.bushy_grass": "Bushy Grass",
+  "block.greeneries.medium_grass": "Medium Grass"
 }

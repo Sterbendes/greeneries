@@ -1,0 +1,6 @@
+{
+  "parent": "greeneries:block/custommodels/bushy_tinted_cross",
+  "textures": {
+    "cross": "minecraft:block/short_grass"
+  }
+}
