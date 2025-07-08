@@ -1,4 +1,4 @@
-package net.sterbendes.greeneries;
+package net.sterbendes.greeneries.fabric;
 
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
@@ -12,32 +12,64 @@ import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.sterbendes.greeneries.GreeneriesMod;
+import net.sterbendes.greeneries.GreeneriesPlatform;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public class ModFabric implements ModInitializer {
 
-    public static final ResourceKey<PlacedFeature> GRASS_FEATURE_REGISTRY_KEY = ResourceKey.create(
-        Registries.PLACED_FEATURE, ResourceLocation.parse("greeneries:patch_red_fescue"));
-
     @Override
     public void onInitialize() {
         GreeneriesMod.init(new GreeneriesFabricPlatform());
+    }
 
-        BiomeModifications.addFeature(biomeSelectionContext ->
-                biomeSelectionContext.getBiomeKey().location().toString().equals("minecraft:plains"),
-            GenerationStep.Decoration.VEGETAL_DECORATION, GRASS_FEATURE_REGISTRY_KEY);
+    private static Map<TagKey<Biome>, TagKey<PlacedFeature>> getBiomeTagToFeatureTag() {
+        var strings = Map.of(
+            "c:is_dry/overworld", "greeneries:patches_dry",
+            "c:is_jungle", "greeneries:patches_jungles",
+            "minecraft:is_forest", "greeneries:patches_normal_forests",
+            "c:is_plains", "greeneries:patches_plains",
+            "c:is_sparse_vegetation/overworld", "greeneries:patches_sparse_vegetation",
+            "c:is_taiga", "greeneries:patches_taigas"
+        );
+
+        var map = new HashMap<TagKey<Biome>, TagKey<PlacedFeature>>();
+        strings.forEach((str, str2) -> map.put(
+            TagKey.create(Registries.BIOME, ResourceLocation.parse(str)),
+            TagKey.create(Registries.PLACED_FEATURE, ResourceLocation.parse(str2))
+        ));
+        return map;
+    }
+
+    @ApiStatus.Internal
+    public static void doBiomeModifications(MinecraftServer server) {
+        getBiomeTagToFeatureTag().forEach((biomeTag, featureTagKey) -> {
+            var placedFeatureRegistry = server.registryAccess().registryOrThrow(Registries.PLACED_FEATURE);
+
+            for (var featureHolder : placedFeatureRegistry.getTagOrEmpty(featureTagKey)) {
+                BiomeModifications.addFeature(
+                    biomeSelectionContext -> biomeSelectionContext.hasTag(biomeTag),
+                    GenerationStep.Decoration.VEGETAL_DECORATION,
+                    featureHolder.unwrapKey().orElseThrow()
+                );
+            }
+        });
     }
 
     private static class GreeneriesFabricPlatform implements GreeneriesPlatform {

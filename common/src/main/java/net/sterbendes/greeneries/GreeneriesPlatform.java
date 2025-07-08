@@ -20,10 +20,6 @@ import java.util.function.Supplier;
 public interface GreeneriesPlatform {
 
     default <T> Holder<T> register(@NotNull Registry<T> registry, ResourceLocation rl, @NotNull Supplier<T> value) {
-        //        var obj = value.get();
-        //        var holder = Holder.direct(obj);
-        //        Registry.register(registry, rl, obj);
-        //        return holder;
         return Registry.registerForHolder(registry, rl, value.get());
     }
 

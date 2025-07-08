@@ -36,7 +36,7 @@ public class ModNeoforge {
         GreeneriesMod.init(new GreeneriesNeoforgePlatform());
     }
 
-    public static class GreeneriesNeoforgePlatform implements GreeneriesPlatform {
+    private static class GreeneriesNeoforgePlatform implements GreeneriesPlatform {
 
         @Override
         public <T> Holder<T> register(@NotNull Registry<T> registry, ResourceLocation rl, @NotNull Supplier<T> value) {

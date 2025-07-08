@@ -8,11 +8,11 @@
   "icon": "icon.png",
   "entrypoints": {
     "main": [
-      "net.sterbendes.greeneries.ModFabric"
+      "net.sterbendes.greeneries.fabric.ModFabric"
     ]
   },
   "mixins": [
-
+    "greeneries.fabric.mixins.json"
   ],
   "depends": {
     "minecraft": "${mc_versions_fabric}"
