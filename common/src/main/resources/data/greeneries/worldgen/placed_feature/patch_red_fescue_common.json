@@ -4,8 +4,8 @@
     {
       "type": "minecraft:noise_threshold_count",
       "above_noise": 4,
-      "below_noise": 1,
-      "noise_level": 0.6
+      "below_noise": 2,
+      "noise_level": 0.4
     },
     {
       "type": "minecraft:in_square"

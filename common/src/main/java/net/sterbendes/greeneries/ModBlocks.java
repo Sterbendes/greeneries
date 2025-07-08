@@ -35,8 +35,8 @@ public abstract class ModBlocks {
         if (blockPos == null) return color;
         var randomSource = RandomSource.create(BlockPos.asLong(blockPos.getX(), 0, blockPos.getZ()));
 
-        var rand1 = (randomSource.nextInt() / 20) >> 8 & 0b11111111_00000000_00000000; // red
-        var rand2 = (randomSource.nextInt() / 16) >> 16 & 0b00000000_11111111_00000000; // green
+        var rand1 = (randomSource.nextInt() / 22) >> 8 & 0b11111111_00000000_00000000; // red
+        var rand2 = (randomSource.nextInt() / 18) >> 16 & 0b00000000_11111111_00000000; // green
         var rand3 = (randomSource.nextInt() / 24) >> 24 & 0b00000000_00000000_11111111; // blue
 
         return color + rand1 + rand2 + rand3;
