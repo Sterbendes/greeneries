@@ -10,7 +10,6 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.GrassColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -42,7 +41,7 @@ public abstract class ModBlocks {
         return color + rand1 + rand2 + rand3;
     };
 
-    public static final ItemColor PLAINS_FOLIAGE_COLOR = (stack, i) -> FoliageColor.get(0.8, 0.4);
+    public static final ItemColor PLAINS_FOLIAGE_COLOR = (stack, i) -> GrassColor.getDefaultColor();
 
 
     static {
