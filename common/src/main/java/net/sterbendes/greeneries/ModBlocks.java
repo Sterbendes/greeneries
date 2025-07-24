@@ -15,10 +15,12 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.TallGrassBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.function.Supplier;
 
 import static net.sterbendes.greeneries.GreeneriesMod.platform;
 
@@ -41,35 +43,49 @@ public abstract class ModBlocks {
         return color + rand1 + rand2 + rand3;
     };
 
-    public static final ItemColor PLAINS_FOLIAGE_COLOR = (stack, i) -> GrassColor.getDefaultColor();
+    public static final ItemColor GRASS_ITEM_COLOR = (stack, i) -> GrassColor.getDefaultColor();
 
 
     static {
-        registerGrass("grass", "very_short", "bushy", "medium");
-        registerGrass("red_fescue", "very_short", "short", "bushy", "medium");
-        registerGrass("common_bent", true, false, "very_short", "short", "bushy");
+        registerVariants("grass", "very_short", "bushy", "medium");
+        registerVariants("red_fescue", "very_short", "short", "bushy", "medium");
+        registerVariants("common_bent", VARYING_GRASS_BLOCK_COLOR, null, "very_short", "short", "bushy");
+
+        register("cattail", VARYING_GRASS_BLOCK_COLOR, GRASS_ITEM_COLOR,
+            () -> new ReedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_SEAGRASS)));
+        register("reed", VARYING_GRASS_BLOCK_COLOR, GRASS_ITEM_COLOR,
+            () -> new ReedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_SEAGRASS)));
     }
 
 
-    public static void registerGrass(String name, String... variants) {
-        registerGrass(name, true, true, variants);
+    public static void registerVariants(String name, String... variants) {
+        registerVariants(name, VARYING_GRASS_BLOCK_COLOR, GRASS_ITEM_COLOR, variants);
     }
 
-    public static void registerGrass(String name, boolean tintBlock, boolean tintItem, String... variants) {
+    public static void registerVariants(String name, @Nullable BlockColor blockTint, @Nullable ItemColor itemTint,
+                                        String... variants) {
         for (var variant : variants) {
-            var holder = GreeneriesMod.register(variant + "_" + name, BuiltInRegistries.BLOCK,
-                () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { });
-            GreeneriesMod.register(
-                variant + "_" + name, BuiltInRegistries.ITEM,
-                () -> new BlockItem(holder.value(), new Item.Properties())
+            register(
+                variant + "_" + name,
+                blockTint, itemTint,
+                () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) {}
             );
-
-            platform.setRenderLayer(holder::value, RenderType.cutout());
-            if (tintBlock) platform.setBlockColor(holder::value, VARYING_GRASS_BLOCK_COLOR);
-            if (tintItem) platform.setItemColor(holder::value, PLAINS_FOLIAGE_COLOR);
-
-            allGreeneriesBlocks.put(variant + "_" + name, holder);
         }
+    }
+
+    private static void register(String name, @Nullable BlockColor blockTint, @Nullable ItemColor itemTint,
+                                 Supplier<Block> blockSupplier) {
+        var holder = GreeneriesMod.register(name, BuiltInRegistries.BLOCK, blockSupplier);
+        GreeneriesMod.register(
+            name, BuiltInRegistries.ITEM,
+            () -> new BlockItem(holder.value(), new Item.Properties())
+        );
+
+        platform.setRenderLayer(holder::value, RenderType.cutout());
+        if (blockTint != null) platform.setBlockColor(holder::value, blockTint);
+        if (itemTint != null) platform.setItemColor(holder::value, itemTint);
+
+        allGreeneriesBlocks.put(name, holder);
     }
 
     public static Collection<Holder<Block>> getAllGreeneriesBlocks() {
