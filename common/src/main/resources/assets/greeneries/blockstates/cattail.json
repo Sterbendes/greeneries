@@ -1,10 +1,10 @@
 {
   "variants": {
     "half=lower": {
-      "model": "minecraft:block/cattail_bottom"
+      "model": "greeneries:block/cattail_bottom"
     },
     "half=upper": {
-      "model": "minecraft:block/cattail_top"
+      "model": "greeneries:block/cattail_top"
     }
   }
 }

@@ -1,5 +1,5 @@
 {
-  "parent": "minecraft:block/tinted_cross",
+  "parent": "greeneries:block/custommodels/tinted_cross_with_overlay",
   "textures": {
     "cross": "greeneries:block/cattail_top",
     "overlay": "greeneries:block/cattail_top_overlay"
