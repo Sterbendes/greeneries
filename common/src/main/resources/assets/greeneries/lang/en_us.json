@@ -10,5 +10,7 @@
 
   "block.greeneries.very_short_grass": "Very Short Grass",
   "block.greeneries.bushy_grass": "Bushy Grass",
-  "block.greeneries.medium_grass": "Medium Grass"
+  "block.greeneries.medium_grass": "Medium Grass",
+
+  "block.greeneries.cattail": "Cattail"
 }

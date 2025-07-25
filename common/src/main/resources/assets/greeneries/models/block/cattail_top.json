@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/tinted_cross",
+  "textures": {
+    "cross": "greeneries:block/cattail_top",
+    "overlay": "greeneries:block/cattail_top_overlay"
+  }
+}
