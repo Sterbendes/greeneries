@@ -23,6 +23,8 @@ public class GreeneriesMod {
 
         platform.setBlockColor(() -> Blocks.SHORT_GRASS, ModBlocks.VARYING_GRASS_BLOCK_COLOR);
         platform.setBlockColor(() -> Blocks.TALL_GRASS, ModBlocks.VARYING_GRASS_BLOCK_COLOR);
+        platform.setBlockColor(() -> Blocks.FERN, ModBlocks.VARYING_FERN_BLOCK_COLOR);
+        platform.setBlockColor(() -> Blocks.LARGE_FERN, ModBlocks.VARYING_FERN_BLOCK_COLOR);
     }
 
     static <T> Holder<T> register(String name, Registry<T> registry, Supplier<T> obj) {
