@@ -10,9 +10,11 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.GrassColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.TallGrassBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import org.jetbrains.annotations.Nullable;
@@ -43,7 +45,13 @@ public abstract class ModBlocks {
         return color + rand1 + rand2 + rand3;
     };
 
+    public static final BlockColor FOLIAGE_COLOR = (blockState, blockAndTintGetter, blockPos, i) ->
+        blockAndTintGetter != null && blockPos != null
+            ? BiomeColors.getAverageFoliageColor(blockAndTintGetter, blockPos)
+            : FoliageColor.getDefaultColor();
+
     public static final ItemColor GRASS_ITEM_COLOR = (stack, i) -> GrassColor.getDefaultColor();
+    public static final ItemColor FOLIAGE_ITEM_COLOR = (stack, i) -> FoliageColor.getDefaultColor();
 
 
     static {
@@ -51,9 +59,21 @@ public abstract class ModBlocks {
         registerVariants("red_fescue", "very_short", "short", "bushy", "medium");
         registerVariants("common_bent", VARYING_GRASS_BLOCK_COLOR, null, "very_short", "short", "bushy");
 
-        register("cattail", VARYING_GRASS_BLOCK_COLOR, GRASS_ITEM_COLOR,
+        register("medium_eagle_fern", FOLIAGE_COLOR, FOLIAGE_ITEM_COLOR,
+            () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN)) {});
+        register("tall_eagle_fern", FOLIAGE_COLOR, FOLIAGE_ITEM_COLOR,
+            () -> new DoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_FERN)));
+
+        register("short_royal_fern", FOLIAGE_COLOR, FOLIAGE_ITEM_COLOR,
+            () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN)){});
+        register("medium_royal_fern", FOLIAGE_COLOR, FOLIAGE_ITEM_COLOR,
+            () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN)){});
+        register("tall_royal_fern", FOLIAGE_COLOR, FOLIAGE_ITEM_COLOR,
+            () -> new DoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_FERN)){});
+
+        register("cattail", FOLIAGE_COLOR, GRASS_ITEM_COLOR,
             () -> new ReedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_SEAGRASS)));
-        register("reed", VARYING_GRASS_BLOCK_COLOR, GRASS_ITEM_COLOR,
+        register("reed", FOLIAGE_COLOR, GRASS_ITEM_COLOR,
             () -> new ReedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_SEAGRASS)));
     }
 
