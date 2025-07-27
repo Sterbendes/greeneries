@@ -12,5 +12,8 @@
   "block.greeneries.bushy_grass": "Bushy Grass",
   "block.greeneries.medium_grass": "Medium Grass",
 
-  "block.greeneries.cattail": "Cattail"
+  "block.greeneries.cattail": "Cattail",
+
+  "block.greeneries.tall_eagle_fern": "Tall Eagle Fern",
+  "block.greeneries.medium_eagle_fern": "Medium Eagle Fern"
 }
