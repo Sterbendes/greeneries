@@ -1,0 +1,7 @@
+{
+  "parent": "greeneries:block/custommodels/tinted_cross_with_overlay",
+  "textures": {
+    "cross": "greeneries:block/short_royal_fern",
+    "overlay": "greeneries:block/short_royal_fern_overlay"
+  }
+}
