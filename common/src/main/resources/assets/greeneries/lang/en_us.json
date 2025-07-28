@@ -15,5 +15,9 @@
   "block.greeneries.cattail": "Cattail",
 
   "block.greeneries.tall_eagle_fern": "Tall Eagle Fern",
-  "block.greeneries.medium_eagle_fern": "Medium Eagle Fern"
+  "block.greeneries.medium_eagle_fern": "Medium Eagle Fern",
+
+  "block.greeneries.tall_royal_fern": "Tall Royal Fern",
+  "block.greeneries.medium_royal_fern": "Medium Royal Fern",
+  "block.greeneries.short_royal_fern": "Short Royal Fern"
 }
