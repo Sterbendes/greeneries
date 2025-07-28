@@ -85,9 +85,9 @@ public abstract class ModBlocks {
         register("tall_royal_fern", VARYING_FERN_BLOCK_COLOR, GRASS_ITEM_COLOR,
             () -> new DoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_FERN)){});
 
-        register("cattail", FOLIAGE_COLOR, GRASS_ITEM_COLOR,
+        register("cattail", FOLIAGE_COLOR, null,
             () -> new ReedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_SEAGRASS)));
-        register("reed", FOLIAGE_COLOR, GRASS_ITEM_COLOR,
+        register("reed", FOLIAGE_COLOR, null,
             () -> new ReedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_SEAGRASS)));
     }
 
