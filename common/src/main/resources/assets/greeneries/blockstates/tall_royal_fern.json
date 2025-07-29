@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "greeneries:block/tall_royal_fern_bottom"
+    },
+    "half=upper": {
+      "model": "greeneries:block/tall_royal_fern_top"
+    }
+  }
+}
