@@ -40,19 +40,12 @@
         {
           "type": "minecraft:block_predicate_filter",
           "predicate": {
-            "type": "minecraft:matching_blocks",
-            "blocks": [
-              "minecraft:air",
-              "greeneries:very_short_grass",
-              "minecraft:short_grass",
-              "greeneries:bushy_grass",
-              "greeneries:medium_grass"
-            ]
+            "type": "replaceable"
           }
         }
       ]
     },
-    "tries": 14,
+    "tries": 16,
     "xz_spread": 3,
     "y_spread": 2
   }
