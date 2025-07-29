@@ -3,7 +3,6 @@
     "greeneries:very_short_grass",
     "minecraft:short_grass",
     "greeneries:bushy_grass",
-    "greeneries:medium_grass",
-    "minecraft:tall_grass"
+    "greeneries:medium_grass"
   ]
 }
