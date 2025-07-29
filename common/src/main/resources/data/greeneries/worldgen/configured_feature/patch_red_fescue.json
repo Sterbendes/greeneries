@@ -40,7 +40,17 @@
         {
           "type": "minecraft:block_predicate_filter",
           "predicate": {
-            "type": "replaceable"
+            "type": "any_of",
+            "predicates": [
+              {
+                "type": "matching_block_tag",
+                "tag": "greeneries:grass"
+              },
+              {
+                "type": "matching_blocks",
+                "blocks": "air"
+              }
+            ]
           }
         }
       ]
