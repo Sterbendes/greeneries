@@ -7,7 +7,6 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.ItemLike;
 import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 import static net.sterbendes.greeneries.GreeneriesMod.platform;
 
@@ -24,7 +23,7 @@ public abstract class ModCreativeTabs {
     );
 
     @Contract(" -> new")
-    public static ItemLike @NotNull [] getAllGreeneriesItems() {
+    public static ItemLike[] getAllGreeneriesItems() {
         return ModBlocks.getAllGreeneriesBlocks().stream().map(Holder::value).toArray(ItemLike[]::new);
     }
 
