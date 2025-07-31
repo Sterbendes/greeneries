@@ -6,6 +6,8 @@ plugins {
 
 // you can put a repositories block here if you need common dependencies from other sources than modrinth
 
+val generated = sourceSets.create("generated")
+
 dependencies {
     minecraft("com.mojang:minecraft:${rootProject.properties["minecraft_version"]}")
     mappings(loom.layered {
@@ -38,4 +40,8 @@ loom {
 tasks {
     jar { enabled = false }
     remapJar { enabled = false }
+
+    processResources {
+        from(generated.resources)
+    }
 }

@@ -30,6 +30,13 @@ neoForge {
             gameDirectory = rootProject.file("run/server/${rootProject.properties["minecraft_version"]}")
             jvmArguments.addAll(*vmArgs)
         }
+        create("Data") {
+            data()
+            gameDirectory = rootProject.file("run/data/${rootProject.properties["minecraft_version"]}")
+            jvmArguments.addAll(*vmArgs)
+            programArguments.addAll("--mod", "greeneries",/* "--includeClient", "--includeServer", */"--output",
+                rootProject.file("common/src/generated/resources").absolutePath)
+        }
     }
 
     mods {
@@ -47,7 +54,7 @@ tasks {
         from(main.output.resourcesDir)
     }
 
-    named("compileTestJava").configure {
+    getByName("compileTestJava") {
         enabled = false
     }
 
@@ -65,6 +72,7 @@ tasks {
     withType<ProcessResources>().matching(notNeoTask).configureEach {
         // include common resources
         from(project(":common").sourceSets.main.get().resources)
+        from(project(":common").sourceSets["generated"].resources)
 
         // the properties listed here can be used in the mods.toml
         val properties =
@@ -90,16 +98,16 @@ tasks {
 
         filesMatching("data/**/*.json") {
             if (inputs.properties["handle_fluid_unit_conversion"] as Boolean)
-                filter(FabricConversions.fluidUnitConverter)
+                filter(NeoforgeConversions.fluidUnitConverter)
             if (inputs.properties["unified_load_conditions"] as Boolean)
-                filter(FabricConversions.unifiedLoadConditionProcessor)
+                filter(NeoforgeConversions.unifiedLoadConditionProcessor)
         }
     }
 }
 
 
 @Suppress("NULLABILITY_MISMATCH_BASED_ON_JAVA_ANNOTATIONS")
-object FabricConversions {
+object NeoforgeConversions {
 
     val fluidUnitConverter = Transformer<String?, String> { line ->
         var result = line.replace(""""(\d*\.?\d*)_millibuckets"""".toRegex(), "$1")

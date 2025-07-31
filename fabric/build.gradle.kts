@@ -67,6 +67,7 @@ tasks {
     processResources {
         // add common resources to jar
         from(project(":common").sourceSets.main.get().resources)
+        from(project(":common").sourceSets["generated"].resources)
 
         // the properties listed here can be used in the fabric.mod.json
         val properties =

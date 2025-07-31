@@ -17,10 +17,12 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.RegisterEvent;
-import org.jetbrains.annotations.NotNull;
+import net.sterbendes.greeneries.data.DataGenerator;
+import org.jetbrains.annotations.UnknownNullability;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -28,10 +30,12 @@ import java.util.function.Supplier;
 @Mod(GreeneriesMod.modID)
 public class ModNeoforge {
 
-    public static IEventBus modEventBus;
+    public static @UnknownNullability IEventBus modEventBus;
 
     public ModNeoforge(IEventBus modEventBus) {
         ModNeoforge.modEventBus = modEventBus;
+
+        modEventBus.addListener(GatherDataEvent.class, DataGenerator::onGatherData);
 
         GreeneriesMod.init(new GreeneriesNeoforgePlatform());
     }
@@ -39,7 +43,7 @@ public class ModNeoforge {
     private static class GreeneriesNeoforgePlatform implements GreeneriesPlatform {
 
         @Override
-        public <T> Holder<T> register(@NotNull Registry<T> registry, ResourceLocation rl, @NotNull Supplier<T> value) {
+        public <T> Holder<T> register(Registry<T> registry, ResourceLocation rl, Supplier<T> value) {
             modEventBus.<RegisterEvent>addListener(event -> event.register(registry.key(), rl, value));
             return DeferredHolder.create(registry.key(), rl);
         }
