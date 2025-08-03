@@ -1,4 +1,4 @@
-package net.sterbendes.greeneries;
+package net.sterbendes.greeneries.blocks;
 
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
@@ -17,6 +17,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DoublePlantBlock;
 import net.minecraft.world.level.block.TallGrassBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.sterbendes.greeneries.GreeneriesMod;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
@@ -130,5 +132,6 @@ public abstract class ModBlocks {
         return allGreeneriesBlocks.get(name);
     }
 
-    static void init() { }
+    @ApiStatus.Internal
+    public static void init() { }
 }

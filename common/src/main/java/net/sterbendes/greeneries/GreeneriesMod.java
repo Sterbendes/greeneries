@@ -4,6 +4,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Blocks;
+import net.sterbendes.greeneries.blocks.ModBlocks;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.UnknownNullability;
 
@@ -11,9 +12,10 @@ import java.util.function.Supplier;
 
 public class GreeneriesMod {
 
-    static final String modID = "greeneries";
+    public static final String modID = "greeneries";
     @UnknownNullability
-    static GreeneriesPlatform platform;
+    @ApiStatus.Internal
+    public static GreeneriesPlatform platform;
 
     @ApiStatus.Internal
     public static void init(GreeneriesPlatform platform) {
@@ -27,7 +29,8 @@ public class GreeneriesMod {
         platform.setBlockColor(() -> Blocks.LARGE_FERN, ModBlocks.VARYING_FERN_BLOCK_COLOR);
     }
 
-    static <T> Holder<T> register(String name, Registry<T> registry, Supplier<T> obj) {
+    @ApiStatus.Internal
+    public static <T> Holder<T> register(String name, Registry<T> registry, Supplier<T> obj) {
         return platform.register(registry, ResourceLocation.fromNamespaceAndPath(modID, name), obj);
     }
 }
