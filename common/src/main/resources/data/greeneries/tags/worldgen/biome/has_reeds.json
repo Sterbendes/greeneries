@@ -5,6 +5,7 @@
     "#c:is_river",
     "#c:is_stony_shores",
     "#c:is_plains",
-    "#c:is_forest"
+    "#c:is_forest",
+    "#c:is_swamp"
   ]
 }
