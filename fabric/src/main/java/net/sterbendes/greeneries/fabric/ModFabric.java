@@ -45,7 +45,8 @@ public class ModFabric implements ModInitializer {
             "c:is_jungle", "greeneries:patches_jungles",
             "minecraft:is_forest", "greeneries:patches_normal_forests",
             "c:is_plains", "greeneries:patches_plains",
-            "c:is_taiga", "greeneries:patches_taigas"
+            "c:is_taiga", "greeneries:patches_taigas",
+            "greeneries:has_reeds", "greeneries:patches_wet"
         );
 
         var map = new HashMap<TagKey<Biome>, TagKey<PlacedFeature>>();

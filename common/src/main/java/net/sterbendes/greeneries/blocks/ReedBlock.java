@@ -42,7 +42,7 @@ public class ReedBlock extends DoublePlantBlock implements BucketPickup, LiquidB
 
         if (blockPos.getY() >= level.getMaxBuildHeight() - 1 ) return null;
         if (!level.getBlockState(blockPos.above()).canBeReplaced(context)) return null;
-        if (level.getFluidState(blockPos).is(FluidTags.WATER))
+        if (level.getFluidState(blockPos).isSourceOfType(Fluids.WATER))
             return defaultBlockState().setValue(WATERLOGGED, true);
         if (level.getFluidState(blockPos).isEmpty())
             return defaultBlockState();
