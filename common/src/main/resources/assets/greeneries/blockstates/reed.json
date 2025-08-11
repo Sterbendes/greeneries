@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "half=lower": {
+      "model": "greeneries:block/cattail_bottom"
+    },
+    "half=upper": {
+      "model": "greeneries:block/reed_top"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "greeneries:block/custommodels/tinted_cross_with_overlay",
+  "textures": {
+    "cross": "greeneries:block/cattail_top",
+    "overlay": "greeneries:block/reed_top_overlay"
+  }
+}
