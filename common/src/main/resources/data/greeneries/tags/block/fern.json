@@ -1,7 +1,7 @@
 {
   "values": [
-    "greeneries:fern/eagle_fern",
-    "greeneries:fern/royal_fern",
-    "greeneries:fern/vanilla"
+    "#greeneries:fern/eagle_fern",
+    "#greeneries:fern/royal_fern",
+    "#greeneries:fern/vanilla"
   ]
 }
