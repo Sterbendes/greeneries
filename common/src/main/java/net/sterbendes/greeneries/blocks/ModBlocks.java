@@ -75,7 +75,7 @@ public abstract class ModBlocks {
         registerVariants("grass", "very_short", "bushy", "medium");
         registerVariants("red_fescue", "very_short", "short", "bushy", "medium");
         registerVariants("common_bent", VARYING_GRASS_BLOCK_COLOR, null, "very_short", "short", "bushy");
-        registerVariants("blue_grass","short");
+        registerVariants("blue_grass","very_short", "short","bushy");
 
         register("medium_eagle_fern", VARYING_FERN_BLOCK_COLOR, GRASS_ITEM_COLOR,
             () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN)) {});
