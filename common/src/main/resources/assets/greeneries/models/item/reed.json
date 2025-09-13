@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "greeneries:block/cattail_top"
+    "layer0": "greeneries:item/reed"
   }
 }
