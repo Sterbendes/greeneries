@@ -66,7 +66,7 @@ public abstract class ModBlocks {
         blockAndTintGetter != null && blockPos != null
             ? BiomeColors.getAverageFoliageColor(blockAndTintGetter, blockPos)
             : FoliageColor.getDefaultColor();
-    public static final ItemColor FOLIAGE_ITEM_COLOR = (stack, i) -> FoliageColor.getDefaultColor();
+    public static final ItemColor FOLIAGE_ITEM_COLOR = (stack, i) -> FoliageColor.get(0.8d, 0.4d);
 
     public static final ItemColor GRASS_ITEM_COLOR = (stack, i) -> GrassColor.getDefaultColor();
 
@@ -75,19 +75,19 @@ public abstract class ModBlocks {
         registerVariants("grass", "very_short", "bushy", "medium");
         registerVariants("red_fescue", "very_short", "short", "bushy", "medium");
         registerVariants("common_bent", VARYING_GRASS_BLOCK_COLOR, null, "very_short", "short", "bushy");
-        registerVariants("blue_grass","very_short", "short","bushy");
+        registerVariants("blue_grass", "very_short", "short", "bushy");
 
         register("medium_eagle_fern", VARYING_FERN_BLOCK_COLOR, GRASS_ITEM_COLOR,
-            () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN)) {});
+            () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN)) { });
         register("tall_eagle_fern", VARYING_FERN_BLOCK_COLOR, GRASS_ITEM_COLOR,
             () -> new DoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_FERN)));
 
         register("short_royal_fern", VARYING_FERN_BLOCK_COLOR, null,
-            () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN)){});
+            () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN)) { });
         register("medium_royal_fern", VARYING_FERN_BLOCK_COLOR, null,
-            () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN)){});
+            () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN)) { });
         register("tall_royal_fern", VARYING_FERN_BLOCK_COLOR, null,
-            () -> new DoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_FERN)){});
+            () -> new DoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_FERN)) { });
 
         register("cattail", FOLIAGE_COLOR, null,
             () -> new ReedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_SEAGRASS)));
@@ -106,7 +106,7 @@ public abstract class ModBlocks {
             register(
                 variant + "_" + name,
                 blockTint, itemTint,
-                () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) {}
+                () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { }
             );
         }
     }
