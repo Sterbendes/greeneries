@@ -66,7 +66,6 @@ public abstract class ModBlocks {
         blockAndTintGetter != null && blockPos != null
             ? BiomeColors.getAverageFoliageColor(blockAndTintGetter, blockPos)
             : FoliageColor.getDefaultColor();
-    public static final ItemColor FOLIAGE_ITEM_COLOR = (stack, i) -> FoliageColor.get(0.8d, 0.4d);
 
     public static final ItemColor GRASS_ITEM_COLOR = (stack, i) -> GrassColor.getDefaultColor();
 
@@ -91,7 +90,7 @@ public abstract class ModBlocks {
 
         register("cattail", FOLIAGE_COLOR, null,
             () -> new ReedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_SEAGRASS)));
-        register("reed", FOLIAGE_COLOR, FOLIAGE_ITEM_COLOR,
+        register("reed", FOLIAGE_COLOR, null,
             () -> new ReedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_SEAGRASS)));
     }
 
