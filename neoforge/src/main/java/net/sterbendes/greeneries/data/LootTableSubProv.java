@@ -33,7 +33,10 @@ public record LootTableSubProv(HolderLookup.Provider provider) implements LootTa
         "very_short_red_fescue",
         "short_red_fescue",
         "bushy_red_fescue",
-        "medium_red_fescue"
+        "medium_red_fescue",
+        "very_short_blue_grass",
+        "short_blue_grass",
+        "bushy_blue_grass"
     ).map(s -> ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath("greeneries", s)));
 
 

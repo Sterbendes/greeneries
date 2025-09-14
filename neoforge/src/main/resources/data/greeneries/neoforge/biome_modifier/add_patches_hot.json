@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#c:is_hot/overworld",
+  "features": "#greeneries:patches_hot",
+  "step": "vegetal_decoration"
+}

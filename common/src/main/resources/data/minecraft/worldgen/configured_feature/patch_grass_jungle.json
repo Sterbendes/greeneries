@@ -33,9 +33,21 @@
                 }
               },
               {
-                "weight": 5,
+                "weight": 3,
                 "data": {
                   "Name": "minecraft:fern"
+                }
+              },
+              {
+                "weight": 1,
+                "data": {
+                  "Name": "greeneries:medium_eagle_fern"
+                }
+              },
+              {
+                "weight": 1,
+                "data": {
+                  "Name": "greeneries:tall_eagle_fern"
                 }
               }
             ]

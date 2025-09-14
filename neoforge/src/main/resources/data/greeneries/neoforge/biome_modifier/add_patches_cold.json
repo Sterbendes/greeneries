@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#c:is_cold/overworld",
+  "features": "#greeneries:patches_cold",
+  "step": "vegetal_decoration"
+}

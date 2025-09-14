@@ -41,11 +41,10 @@ public class ModFabric implements ModInitializer {
 
     private static Map<TagKey<Biome>, TagKey<PlacedFeature>> getAddedFeaturesMap() {
         var strings = Map.of(
-            "c:is_dry/overworld", "greeneries:patches_dry",
+            "c:is_hot/overworld", "greeneries:patches_hot",
             "c:is_jungle", "greeneries:patches_jungles",
-            "minecraft:is_forest", "greeneries:patches_normal_forests",
-            "c:is_plains", "greeneries:patches_plains",
-            "c:is_taiga", "greeneries:patches_taigas",
+            "c:is_temperate/overworld", "greeneries:patches_temperate",
+            "c:is_cold/overworld", "greeneries:patches_cold",
             "greeneries:has_reeds", "greeneries:patches_wet"
         );
 

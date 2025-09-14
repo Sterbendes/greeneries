@@ -1,6 +1,7 @@
 {
   "values": [
-    "greeneries:patch_red_fescue_common",
-    "greeneries:patch_common_bent_grass_common"
+    "greeneries:patch_royal_fern",
+    "greeneries:patch_red_fescue_rare",
+    "greeneries:patch_common_bent_grass_rare"
   ]
 }
