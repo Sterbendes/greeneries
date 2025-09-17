@@ -45,7 +45,8 @@ public class ModFabric implements ModInitializer {
             "c:is_jungle", "greeneries:patches_jungles",
             "c:is_temperate/overworld", "greeneries:patches_temperate",
             "c:is_cold/overworld", "greeneries:patches_cold",
-            "greeneries:has_reeds", "greeneries:patches_wet"
+            "greeneries:has_reeds", "greeneries:patches_water",
+            "c:is_wet/overworld", "greeneries:patches_wet"
         );
 
         var map = new HashMap<TagKey<Biome>, TagKey<PlacedFeature>>();
