@@ -2,15 +2,14 @@ package net.sterbendes.greeneries.neoforge;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColor;
-import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.client.color.item.ItemTintSource;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
@@ -37,7 +36,7 @@ public class ModNeoforge {
     public ModNeoforge(IEventBus modEventBus) {
         ModNeoforge.modEventBus = modEventBus;
 
-        modEventBus.addListener(GatherDataEvent.class, DataGenerator::onGatherData);
+        modEventBus.addListener(GatherDataEvent.Server.class, DataGenerator::onGatherData);
 
         GreeneriesMod.init(new GreeneriesNeoforgePlatform());
     }
@@ -67,8 +66,8 @@ public class ModNeoforge {
 
         @SuppressWarnings("deprecation")
         @Override
-        public void setRenderLayer(Supplier<Block> block, RenderType renderType) {
-            onClientStart(mc -> ItemBlockRenderTypes.setRenderLayer(block.get(), renderType));
+        public void setRenderLayer(Supplier<Block> block, ChunkSectionLayer layer) {
+            onClientStart(mc -> ItemBlockRenderTypes.setRenderLayer(block.get(), layer));
         }
 
         @Override
@@ -78,9 +77,9 @@ public class ModNeoforge {
         }
 
         @Override
-        public void setItemColor(Supplier<ItemLike> item, ItemColor itemColor) {
-            modEventBus.addListener(RegisterColorHandlersEvent.Item.class, event -> event.register(itemColor,
-                item.get()));
+        public void setItemColor(ResourceLocation item, ItemTintSource itemColor) {
+            modEventBus.addListener(RegisterColorHandlersEvent.ItemTintSources.class,
+                event -> event.register(item, itemColor.type()));
         }
     }
 }

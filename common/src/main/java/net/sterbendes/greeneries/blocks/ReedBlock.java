@@ -3,7 +3,7 @@ package net.sterbendes.greeneries.blocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.tags.FluidTags;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -40,7 +40,7 @@ public class ReedBlock extends DoublePlantBlock implements BucketPickup, LiquidB
         var blockPos = context.getClickedPos();
         var level = context.getLevel();
 
-        if (blockPos.getY() >= level.getMaxBuildHeight() - 1 ) return null;
+        if (blockPos.getY() >= level.getMaxY() - 1 ) return null;
         if (!level.getBlockState(blockPos.above()).canBeReplaced(context)) return null;
         if (level.getFluidState(blockPos).isSourceOfType(Fluids.WATER))
             return defaultBlockState().setValue(WATERLOGGED, true);
@@ -76,7 +76,7 @@ public class ReedBlock extends DoublePlantBlock implements BucketPickup, LiquidB
 
     @SuppressWarnings("deprecation")
     @Override
-    public boolean canPlaceLiquid(@Nullable Player player, BlockGetter level, BlockPos pos, BlockState state,
+    public boolean canPlaceLiquid(@Nullable LivingEntity player, BlockGetter level, BlockPos pos, BlockState state,
                                   Fluid fluid) {
         return fluid.is(FluidTags.WATER) && state.getValue(HALF) == DoubleBlockHalf.LOWER;
     }
@@ -101,7 +101,7 @@ public class ReedBlock extends DoublePlantBlock implements BucketPickup, LiquidB
     }
 
     @Override
-    public ItemStack pickupBlock(@Nullable Player player, LevelAccessor level, BlockPos pos, BlockState state) {
+    public ItemStack pickupBlock(@Nullable LivingEntity player, LevelAccessor level, BlockPos pos, BlockState state) {
         if (state.getValue(BlockStateProperties.WATERLOGGED)) {
             level.setBlock(pos, state.setValue(BlockStateProperties.WATERLOGGED, false), 3);
 

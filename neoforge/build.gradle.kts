@@ -1,5 +1,5 @@
 plugins {
-    id("net.neoforged.moddev") version "2.0.78"
+    id("net.neoforged.moddev") version "2.0.107"
 }
 
 // put a repositories block here for neoforge-only repositories if you need it
@@ -31,7 +31,7 @@ neoForge {
             jvmArguments.addAll(*vmArgs)
         }
         create("Data") {
-            data()
+            serverData()
             gameDirectory = rootProject.file("run/data/${rootProject.properties["minecraft_version"]}")
             jvmArguments.addAll(*vmArgs)
             programArguments.addAll("--mod", "greeneries",/* "--includeClient", "--includeServer", */"--output",

@@ -1,31 +1,27 @@
 package net.sterbendes.greeneries.fabric;
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
-import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
+import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColor;
-import net.minecraft.client.color.item.ItemColor;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.color.item.ItemTintSource;
+import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.sterbendes.greeneries.GreeneriesMod;
 import net.sterbendes.greeneries.GreeneriesPlatform;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -59,17 +55,18 @@ public class ModFabric implements ModInitializer {
 
     @ApiStatus.Internal
     public static void doBiomeModifications(MinecraftServer server) {
-        getAddedFeaturesMap().forEach((biomeTag, featureTagKey) -> {
-            var placedFeatureRegistry = server.registryAccess().registryOrThrow(Registries.PLACED_FEATURE);
-
-            for (var featureHolder : placedFeatureRegistry.getTagOrEmpty(featureTagKey)) {
-                BiomeModifications.addFeature(
-                    biomeSelectionContext -> biomeSelectionContext.hasTag(biomeTag),
-                    GenerationStep.Decoration.VEGETAL_DECORATION,
-                    featureHolder.unwrapKey().orElseThrow()
-                );
-            }
-        });
+        // TODO
+//        getAddedFeaturesMap().forEach((biomeTag, featureTagKey) -> {
+//            var placedFeatureRegistry = server.registryAccess().get(Registries.PLACED_FEATURE).orElseThrow();
+//
+//            for (var featureHolder : placedFeatureRegistry.getTagOrEmpty(featureTagKey)) {
+//                BiomeModifications.addFeature(
+//                    biomeSelectionContext -> biomeSelectionContext.hasTag(biomeTag),
+//                    GenerationStep.Decoration.VEGETAL_DECORATION,
+//                    featureHolder.unwrapKey().orElseThrow()
+//                );
+//            }
+//        });
     }
 
     private static class GreeneriesFabricPlatform implements GreeneriesPlatform {
@@ -91,8 +88,8 @@ public class ModFabric implements ModInitializer {
         }
 
         @Override
-        public void setRenderLayer(Supplier<Block> block, RenderType renderType) {
-            onClientStart(mc -> BlockRenderLayerMap.INSTANCE.putBlock(block.get(), renderType));
+        public void setRenderLayer(Supplier<Block> block, ChunkSectionLayer renderType) {
+            onClientStart(mc -> BlockRenderLayerMap.putBlock(block.get(), renderType));
         }
 
         @Override
@@ -101,8 +98,8 @@ public class ModFabric implements ModInitializer {
         }
 
         @Override
-        public void setItemColor(Supplier<ItemLike> item, ItemColor itemColor) {
-            onClientStart(mc -> ColorProviderRegistry.ITEM.register(itemColor, item.get()));
+        public void setItemColor(ResourceLocation item, ItemTintSource itemColor) {
+//            onClientStart(mc -> .register(itemColor, item.get())); TODO
         }
     }
 }

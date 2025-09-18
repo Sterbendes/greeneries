@@ -3,6 +3,7 @@ package net.sterbendes.greeneries.neoforge.data;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.resources.ResourceKey;
@@ -49,7 +50,7 @@ public record LootTableSubProv(HolderLookup.Provider provider) implements LootTa
                         .add(
                             AlternativesEntry.alternatives(
                                 LootItem.lootTableItem(lookupBlock(blockKey))
-                                    .when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(Items.SHEARS))),
+                                    .when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(BuiltInRegistries.ITEM, Items.SHEARS))),
                                 LootItem.lootTableItem(Items.WHEAT_SEEDS)
                                     .when(LootItemRandomChanceCondition.randomChance(0.125f))
                                     .apply(ApplyBonusCount.addUniformBonusCount(getFortuneEnchantHolder(), 2))

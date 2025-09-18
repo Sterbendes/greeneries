@@ -2,14 +2,13 @@ package net.sterbendes.greeneries;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColor;
-import net.minecraft.client.color.item.ItemColor;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.color.item.ItemTintSource;
+import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.Contract;
 
@@ -25,7 +24,7 @@ public interface GreeneriesPlatform {
     @Contract(value = " -> new", pure = true)
     CreativeModeTab.Builder creativeTabBuilder();
 
-    void setRenderLayer(Supplier<Block> block, RenderType renderType);
+    void setRenderLayer(Supplier<Block> block, ChunkSectionLayer layer);
 
     void onServerStart(Consumer<MinecraftServer> consumer);
 
@@ -33,7 +32,7 @@ public interface GreeneriesPlatform {
 
     void setBlockColor(Supplier<Block> block, BlockColor color);
 
-    void setItemColor(Supplier<ItemLike> item, ItemColor itemColor);
+    void setItemColor(ResourceLocation item, ItemTintSource ItemTintSource);
 
     default boolean isClient() {
         try {

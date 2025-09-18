@@ -1,12 +1,16 @@
 package net.sterbendes.greeneries.blocks;
 
 import net.minecraft.client.color.block.BlockColor;
-import net.minecraft.client.color.item.ItemColor;
+import net.minecraft.client.color.item.GrassColorSource;
+import net.minecraft.client.color.item.ItemTintSource;
 import net.minecraft.client.renderer.BiomeColors;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -26,6 +30,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
+import static net.sterbendes.greeneries.GreeneriesMod.modID;
 import static net.sterbendes.greeneries.GreeneriesMod.platform;
 
 public abstract class ModBlocks {
@@ -65,9 +70,9 @@ public abstract class ModBlocks {
     public static final BlockColor FOLIAGE_COLOR = (blockState, blockAndTintGetter, blockPos, i) ->
         blockAndTintGetter != null && blockPos != null
             ? BiomeColors.getAverageFoliageColor(blockAndTintGetter, blockPos)
-            : FoliageColor.getDefaultColor();
+            : FoliageColor.FOLIAGE_DEFAULT;
 
-    public static final ItemColor GRASS_ITEM_COLOR = (stack, i) -> GrassColor.getDefaultColor();
+    public static final ItemTintSource GRASS_ITEM_COLOR = new GrassColorSource();
 
 
     static {
@@ -77,21 +82,21 @@ public abstract class ModBlocks {
         registerVariants("blue_grass", "very_short", "short", "bushy");
 
         register("medium_eagle_fern", VARYING_FERN_BLOCK_COLOR, GRASS_ITEM_COLOR,
-            () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN)) { });
+            () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(modID, "")))) { });
         register("tall_eagle_fern", VARYING_FERN_BLOCK_COLOR, GRASS_ITEM_COLOR,
-            () -> new DoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_FERN)));
+            () -> new DoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_FERN).setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(modID, "")))));
 
         register("short_royal_fern", VARYING_FERN_BLOCK_COLOR, null,
-            () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN)) { });
+            () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(modID, "")))) { });
         register("medium_royal_fern", VARYING_FERN_BLOCK_COLOR, null,
-            () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN)) { });
+            () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(modID, "")))) { });
         register("tall_royal_fern", VARYING_FERN_BLOCK_COLOR, null,
-            () -> new DoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_FERN)) { });
+            () -> new DoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_FERN).setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(modID, "")))) { });
 
         register("cattail", FOLIAGE_COLOR, null,
-            () -> new ReedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_SEAGRASS)));
+            () -> new ReedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_SEAGRASS).setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(modID, "")))));
         register("reed", FOLIAGE_COLOR, null,
-            () -> new ReedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_SEAGRASS)));
+            () -> new ReedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_SEAGRASS).setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(modID, "")))));
     }
 
 
@@ -99,28 +104,29 @@ public abstract class ModBlocks {
         registerVariants(name, VARYING_GRASS_BLOCK_COLOR, GRASS_ITEM_COLOR, variants);
     }
 
-    public static void registerVariants(String name, @Nullable BlockColor blockTint, @Nullable ItemColor itemTint,
+    public static void registerVariants(String name, @Nullable BlockColor blockTint, @Nullable ItemTintSource itemTint,
                                         String... variants) {
         for (var variant : variants) {
             register(
                 variant + "_" + name,
                 blockTint, itemTint,
-                () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { }
+                () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS).setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(modID, name + "_" + variant)))) { }
             );
         }
     }
 
-    private static void register(String name, @Nullable BlockColor blockTint, @Nullable ItemColor itemTint,
+    private static void register(String name, @Nullable BlockColor blockTint, @Nullable ItemTintSource itemTint,
                                  Supplier<Block> blockSupplier) {
         var holder = GreeneriesMod.register(name, BuiltInRegistries.BLOCK, blockSupplier);
         GreeneriesMod.register(
             name, BuiltInRegistries.ITEM,
-            () -> new BlockItem(holder.value(), new Item.Properties())
+            () -> new BlockItem(holder.value(), new Item.Properties().setId(ResourceKey.create(Registries.ITEM,
+                ResourceLocation.fromNamespaceAndPath(modID, name))))
         );
 
-        platform.setRenderLayer(holder::value, RenderType.cutout());
+        platform.setRenderLayer(holder::value, ChunkSectionLayer.CUTOUT);
         if (blockTint != null) platform.setBlockColor(holder::value, blockTint);
-        if (itemTint != null) platform.setItemColor(holder::value, itemTint);
+        if (itemTint != null) platform.setItemColor(ResourceLocation.fromNamespaceAndPath(modID, name), itemTint);
 
         allGreeneriesBlocks.put(name, holder);
     }
