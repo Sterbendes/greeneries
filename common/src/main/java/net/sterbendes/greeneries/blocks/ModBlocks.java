@@ -16,10 +16,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.GrassColor;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.DoublePlantBlock;
-import net.minecraft.world.level.block.TallGrassBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.sterbendes.greeneries.GreeneriesMod;
 import org.jetbrains.annotations.ApiStatus;
@@ -28,8 +25,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Collection;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.function.Supplier;
+import java.util.function.Function;
 
+import static net.minecraft.world.level.block.state.BlockBehaviour.Properties.ofFullCopy;
 import static net.sterbendes.greeneries.GreeneriesMod.modID;
 import static net.sterbendes.greeneries.GreeneriesMod.platform;
 
@@ -76,25 +74,27 @@ public abstract class ModBlocks {
 
 
     static {
+        Function<BlockBehaviour.Properties, Block> tallGrassBlock = properties -> new TallGrassBlock(properties) {};
+
         registerVariants("grass", "very_short", "bushy", "medium");
         registerVariants("red_fescue", "very_short", "short", "bushy", "medium");
         registerVariants("common_bent", VARYING_GRASS_BLOCK_COLOR, null, "very_short", "short", "bushy");
         registerVariants("blue_grass", "very_short", "short", "bushy");
 
         register("medium_eagle_fern", VARYING_FERN_BLOCK_COLOR, GRASS_ITEM_COLOR,
-            () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(modID, "")))) { });
+            tallGrassBlock, ofFullCopy(Blocks.FERN));
         register("tall_eagle_fern", VARYING_FERN_BLOCK_COLOR, GRASS_ITEM_COLOR,
-            () -> new DoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_FERN).setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(modID, "")))));
+            DoublePlantBlock::new, ofFullCopy(Blocks.LARGE_FERN));
 
         register("short_royal_fern", VARYING_FERN_BLOCK_COLOR, null,
-            () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(modID, "")))) { });
+            tallGrassBlock, ofFullCopy(Blocks.FERN));
         register("medium_royal_fern", VARYING_FERN_BLOCK_COLOR, null,
-            () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN).setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(modID, "")))) { });
+            tallGrassBlock, ofFullCopy(Blocks.FERN));
         register("tall_royal_fern", VARYING_FERN_BLOCK_COLOR, null,
-            () -> new DoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_FERN).setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(modID, "")))) { });
+            DoublePlantBlock::new, ofFullCopy(Blocks.LARGE_FERN));
 
         register("cattail", FOLIAGE_COLOR, null,
-            () -> new ReedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_SEAGRASS).setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(modID, "")))));
+            ReedBlock::new, ofFullCopy(Blocks.TALL_SEAGRASS));
         register("reed", FOLIAGE_COLOR, null,
             () -> new ReedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_SEAGRASS).setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(modID, "")))));
     }
@@ -110,14 +110,17 @@ public abstract class ModBlocks {
             register(
                 variant + "_" + name,
                 blockTint, itemTint,
-                () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS).setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(modID, name + "_" + variant)))) { }
+                GrassBlock::new, ofFullCopy(Blocks.SHORT_GRASS)
             );
         }
     }
 
     private static void register(String name, @Nullable BlockColor blockTint, @Nullable ItemTintSource itemTint,
-                                 Supplier<Block> blockSupplier) {
-        var holder = GreeneriesMod.register(name, BuiltInRegistries.BLOCK, blockSupplier);
+                                 Function<BlockBehaviour.Properties, Block> blockSupplier,
+                                 BlockBehaviour.Properties properties) {
+        var id = ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(modID, name));
+        properties.setId(id);
+        var holder = GreeneriesMod.register(name, BuiltInRegistries.BLOCK, () -> blockSupplier.apply(properties));
         GreeneriesMod.register(
             name, BuiltInRegistries.ITEM,
             () -> new BlockItem(holder.value(), new Item.Properties().setId(ResourceKey.create(Registries.ITEM,
