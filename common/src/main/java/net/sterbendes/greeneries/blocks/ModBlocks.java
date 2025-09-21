@@ -16,7 +16,10 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.GrassColor;
-import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.DoublePlantBlock;
+import net.minecraft.world.level.block.TallGrassBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.sterbendes.greeneries.GreeneriesMod;
 import org.jetbrains.annotations.ApiStatus;
@@ -74,43 +77,44 @@ public abstract class ModBlocks {
 
 
     static {
-        Function<BlockBehaviour.Properties, Block> tallGrassBlock = properties -> new TallGrassBlock(properties) {};
-
-        registerVariants("grass", "very_short", "bushy", "medium");
-        registerVariants("red_fescue", "very_short", "short", "bushy", "medium");
-        registerVariants("common_bent", VARYING_GRASS_BLOCK_COLOR, null, "very_short", "short", "bushy");
-        registerVariants("blue_grass", "very_short", "short", "bushy");
+        registerGrass("grass", "very_short", "bushy", "medium");
+        registerGrass("red_fescue", "very_short", "short", "bushy", "medium");
+        registerGrass("common_bent", VARYING_GRASS_BLOCK_COLOR, null, "very_short", "short", "bushy");
+        registerGrass("blue_grass", "very_short", "short", "bushy");
 
         register("medium_eagle_fern", VARYING_FERN_BLOCK_COLOR, GRASS_ITEM_COLOR,
-            tallGrassBlock, ofFullCopy(Blocks.FERN));
+            ModBlocks::createTallGrassBlock, ofFullCopy(Blocks.FERN));
         register("tall_eagle_fern", VARYING_FERN_BLOCK_COLOR, GRASS_ITEM_COLOR,
             DoublePlantBlock::new, ofFullCopy(Blocks.LARGE_FERN));
 
         register("short_royal_fern", VARYING_FERN_BLOCK_COLOR, null,
-            tallGrassBlock, ofFullCopy(Blocks.FERN));
+            ModBlocks::createTallGrassBlock, ofFullCopy(Blocks.FERN));
         register("medium_royal_fern", VARYING_FERN_BLOCK_COLOR, null,
-            tallGrassBlock, ofFullCopy(Blocks.FERN));
+            ModBlocks::createTallGrassBlock, ofFullCopy(Blocks.FERN));
         register("tall_royal_fern", VARYING_FERN_BLOCK_COLOR, null,
             DoublePlantBlock::new, ofFullCopy(Blocks.LARGE_FERN));
 
         register("cattail", FOLIAGE_COLOR, null,
             ReedBlock::new, ofFullCopy(Blocks.TALL_SEAGRASS));
         register("reed", FOLIAGE_COLOR, null,
-            () -> new ReedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_SEAGRASS).setId(ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(modID, "")))));
+            ReedBlock::new, ofFullCopy(Blocks.TALL_SEAGRASS));
     }
 
-
-    public static void registerVariants(String name, String... variants) {
-        registerVariants(name, VARYING_GRASS_BLOCK_COLOR, GRASS_ITEM_COLOR, variants);
+    private static TallGrassBlock createTallGrassBlock(BlockBehaviour.Properties properties) {
+        return new TallGrassBlock(properties) { };
     }
 
-    public static void registerVariants(String name, @Nullable BlockColor blockTint, @Nullable ItemTintSource itemTint,
-                                        String... variants) {
+    public static void registerGrass(String name, String... variants) {
+        registerGrass(name, VARYING_GRASS_BLOCK_COLOR, GRASS_ITEM_COLOR, variants);
+    }
+
+    public static void registerGrass(String name, @Nullable BlockColor blockTint, @Nullable ItemTintSource itemTint,
+                                     String... variants) {
         for (var variant : variants) {
             register(
                 variant + "_" + name,
                 blockTint, itemTint,
-                GrassBlock::new, ofFullCopy(Blocks.SHORT_GRASS)
+                ModBlocks::createTallGrassBlock, ofFullCopy(Blocks.SHORT_GRASS)
             );
         }
     }
