@@ -6,7 +6,7 @@
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-common/src/generated
+**/.cache
 
 ### IntelliJ IDEA ###
 *.iws
