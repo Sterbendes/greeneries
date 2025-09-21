@@ -1,6 +1,7 @@
 package net.sterbendes.greeneries.fabric;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
@@ -16,6 +17,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.sterbendes.greeneries.GreeneriesMod;
 import net.sterbendes.greeneries.GreeneriesPlatform;
@@ -32,6 +34,9 @@ public class ModFabric implements ModInitializer {
     @Override
     public void onInitialize() {
         GreeneriesMod.init(new GreeneriesFabricPlatform());
+        ServerLifecycleEvents.END_DATA_PACK_RELOAD.register((server, rm, success) -> {
+            if (success) doBiomeModifications(server);
+        });
     }
 
     private static Map<TagKey<Biome>, TagKey<PlacedFeature>> getAddedFeaturesMap() {
@@ -55,17 +60,17 @@ public class ModFabric implements ModInitializer {
     @ApiStatus.Internal
     public static void doBiomeModifications(MinecraftServer server) {
         // TODO
-//        getAddedFeaturesMap().forEach((biomeTag, featureTagKey) -> {
-//            var placedFeatureRegistry = server.registryAccess().get(Registries.PLACED_FEATURE).orElseThrow();
-//
-//            for (var featureHolder : placedFeatureRegistry.getTagOrEmpty(featureTagKey)) {
-//                BiomeModifications.addFeature(
-//                    biomeSelectionContext -> biomeSelectionContext.hasTag(biomeTag),
-//                    GenerationStep.Decoration.VEGETAL_DECORATION,
-//                    featureHolder.unwrapKey().orElseThrow()
-//                );
-//            }
-//        });
+        getAddedFeaturesMap().forEach((biomeTag, featureTagKey) -> {
+            var placedFeatureRegistry = server.registryAccess().get(Registries.PLACED_FEATURE).orElseThrow().value();
+
+            for (var featureHolder : placedFeatureRegistry.getTagOrEmpty(featureTagKey)) {
+                BiomeModifications.addFeature(
+                    biomeSelectionContext -> biomeSelectionContext.hasTag(biomeTag),
+                    GenerationStep.Decoration.VEGETAL_DECORATION,
+                    featureHolder.unwrapKey().orElseThrow()
+                );
+            }
+        });
     }
 
     private static class GreeneriesFabricPlatform implements GreeneriesPlatform {
