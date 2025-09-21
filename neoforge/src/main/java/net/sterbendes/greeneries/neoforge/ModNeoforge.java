@@ -2,7 +2,6 @@ package net.sterbendes.greeneries.neoforge;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColor;
-import net.minecraft.client.color.item.ItemTintSource;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.core.Holder;
@@ -76,10 +75,5 @@ public class ModNeoforge {
                 block.get()));
         }
 
-        @Override
-        public void setItemColor(ResourceLocation item, ItemTintSource itemColor) {
-            modEventBus.addListener(RegisterColorHandlersEvent.ItemTintSources.class,
-                event -> event.register(item, itemColor.type()));
-        }
     }
 }

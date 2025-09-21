@@ -2,7 +2,6 @@ package net.sterbendes.greeneries;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColor;
-import net.minecraft.client.color.item.ItemTintSource;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
@@ -31,8 +30,6 @@ public interface GreeneriesPlatform {
     void onClientStart(Consumer<Minecraft> consumer);
 
     void setBlockColor(Supplier<Block> block, BlockColor color);
-
-    void setItemColor(ResourceLocation item, ItemTintSource ItemTintSource);
 
     default boolean isClient() {
         try {

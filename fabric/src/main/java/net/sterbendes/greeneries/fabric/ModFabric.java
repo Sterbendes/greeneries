@@ -8,7 +8,6 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColor;
-import net.minecraft.client.color.item.ItemTintSource;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
@@ -97,9 +96,5 @@ public class ModFabric implements ModInitializer {
             onClientStart(mc -> ColorProviderRegistry.BLOCK.register(color, block.get()));
         }
 
-        @Override
-        public void setItemColor(ResourceLocation item, ItemTintSource itemColor) {
-//            onClientStart(mc -> .register(itemColor, item.get())); TODO
-        }
     }
 }
