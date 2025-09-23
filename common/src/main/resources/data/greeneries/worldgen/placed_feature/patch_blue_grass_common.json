@@ -1,10 +1,6 @@
 {
-  "feature": "greeneries:patch_common_bent_grass_small",
+  "feature": "greeneries:patch_blue_grass",
   "placement": [
-    {
-      "type": "rarity_filter",
-      "chance": 3
-    },
     {
       "type": "minecraft:in_square"
     },

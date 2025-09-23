@@ -12,14 +12,13 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public interface GreeneriesPlatform {
 
-    default <T> Holder<T> register(@NotNull Registry<T> registry, ResourceLocation rl, @NotNull Supplier<T> value) {
+    default <T> Holder<T> register(Registry<T> registry, ResourceLocation rl, Supplier<T> value) {
         return Registry.registerForHolder(registry, rl, value.get());
     }
 

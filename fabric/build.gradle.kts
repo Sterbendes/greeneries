@@ -28,7 +28,7 @@ dependencies {
 
 loom {
     runs {
-        val vmArgs = arrayOf("-XX:+UseZGC", "-XX:+IgnoreUnrecognizedVMOptions", "-XX:+AllowEnhancedClassRedefinition", "-Xms500M", "-Xmx2G")
+        val vmArgs = arrayOf("-XX:+UseZGC", "-XX:+ZGenerational", "-XX:+IgnoreUnrecognizedVMOptions", "-XX:+AllowEnhancedClassRedefinition", "-Xms500M", "-Xmx2G")
         named("client") {
             client()
             runDir("../run/client/${properties["minecraft_version"]}")

@@ -28,7 +28,7 @@ import java.util.Optional;
 
 public class ReedBlock extends DoublePlantBlock implements BucketPickup, LiquidBlockContainer {
 
-    public static Property<Boolean> WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    public static final Property<Boolean> WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     public ReedBlock(Properties properties) {
         super(properties);

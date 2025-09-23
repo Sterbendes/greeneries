@@ -9,18 +9,21 @@
             "type": "minecraft:weighted_state_provider",
             "entries": [
               {
-                "weight": 5,
+                "weight": 10,
                 "data": {
-                  "Name": "minecraft:tall_grass",
-                  "Properties": {
-                    "half": "lower"
-                  }
+                  "Name": "greeneries:short_blue_grass"
                 }
               },
               {
-                "weight": 2,
+                "weight": 5,
                 "data": {
-                  "Name": "greeneries:medium_grass"
+                  "Name": "greeneries:bushy_blue_grass"
+                }
+              },
+              {
+                "weight": 7,
+                "data": {
+                  "Name": "greeneries:very_short_blue_grass"
                 }
               }
             ]
@@ -31,14 +34,23 @@
         {
           "type": "minecraft:block_predicate_filter",
           "predicate": {
-            "type": "minecraft:matching_blocks",
-            "blocks": "minecraft:air"
+            "type": "any_of",
+            "predicates": [
+              {
+                "type": "matching_block_tag",
+                "tag": "greeneries:grass"
+              },
+              {
+                "type": "matching_blocks",
+                "blocks": "air"
+              }
+            ]
           }
         }
       ]
     },
-    "tries": 96,
-    "xz_spread": 7,
+    "tries": 32,
+    "xz_spread": 5,
     "y_spread": 3
   }
 }

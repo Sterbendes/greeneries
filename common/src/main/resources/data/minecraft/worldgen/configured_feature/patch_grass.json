@@ -9,7 +9,7 @@
             "type": "minecraft:weighted_state_provider",
             "entries": [
               {
-                "weight": 12,
+                "weight": 11,
                 "data": {
                   "Name": "minecraft:short_grass"
                 }
@@ -30,6 +30,12 @@
                 "weight": 3,
                 "data": {
                   "Name": "greeneries:medium_grass"
+                }
+              },
+              {
+                "weight": 1,
+                "data": {
+                  "Name": "greeneries:short_red_fescue"
                 }
               }
             ]

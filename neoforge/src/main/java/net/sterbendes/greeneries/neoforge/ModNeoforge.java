@@ -1,4 +1,4 @@
-package net.sterbendes.greeneries;
+package net.sterbendes.greeneries.neoforge;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColor;
@@ -21,7 +21,9 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.RegisterEvent;
-import net.sterbendes.greeneries.data.DataGenerator;
+import net.sterbendes.greeneries.GreeneriesMod;
+import net.sterbendes.greeneries.GreeneriesPlatform;
+import net.sterbendes.greeneries.neoforge.data.DataGenerator;
 import org.jetbrains.annotations.UnknownNullability;
 
 import java.util.function.Consumer;

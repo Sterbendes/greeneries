@@ -41,12 +41,12 @@ public class ModFabric implements ModInitializer {
 
     private static Map<TagKey<Biome>, TagKey<PlacedFeature>> getAddedFeaturesMap() {
         var strings = Map.of(
-            "c:is_dry/overworld", "greeneries:patches_dry",
+            "c:is_hot/overworld", "greeneries:patches_hot",
             "c:is_jungle", "greeneries:patches_jungles",
-            "minecraft:is_forest", "greeneries:patches_normal_forests",
-            "c:is_plains", "greeneries:patches_plains",
-            "c:is_taiga", "greeneries:patches_taigas",
-            "greeneries:has_reeds", "greeneries:patches_wet"
+            "c:is_temperate/overworld", "greeneries:patches_temperate",
+            "c:is_cold/overworld", "greeneries:patches_cold",
+            "greeneries:has_reeds", "greeneries:patches_water",
+            "c:is_wet/overworld", "greeneries:patches_wet"
         );
 
         var map = new HashMap<TagKey<Biome>, TagKey<PlacedFeature>>();
@@ -75,18 +75,18 @@ public class ModFabric implements ModInitializer {
     private static class GreeneriesFabricPlatform implements GreeneriesPlatform {
 
         @Override
-        public void onServerStart(@NotNull Consumer<MinecraftServer> consumer) {
+        public void onServerStart(Consumer<MinecraftServer> consumer) {
             ServerLifecycleEvents.SERVER_STARTING.register(consumer::accept);
         }
 
         @Override
-        public void onClientStart(@NotNull Consumer<Minecraft> consumer) {
+        public void onClientStart(Consumer<Minecraft> consumer) {
             ClientLifecycleEvents.CLIENT_STARTED.register(consumer::accept);
         }
 
         @Contract(value = " -> new", pure = true)
         @Override
-        public CreativeModeTab.@NotNull Builder creativeTabBuilder() {
+        public CreativeModeTab.Builder creativeTabBuilder() {
             return FabricItemGroup.builder();
         }
 

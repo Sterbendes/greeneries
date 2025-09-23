@@ -19,7 +19,7 @@ neoForge {
     }
 
     runs {
-        val vmArgs = arrayOf("-XX:+UseZGC", "-XX:+IgnoreUnrecognizedVMOptions", "-XX:+AllowEnhancedClassRedefinition", "-Xms500M", "-Xmx2G")
+        val vmArgs = arrayOf("-XX:+UseZGC", "-XX:+ZGenerational", "-XX:+IgnoreUnrecognizedVMOptions", "-XX:+AllowEnhancedClassRedefinition", "-Xms500M", "-Xmx2G")
         create("Client") {
             client()
             gameDirectory = rootProject.file("run/client/${rootProject.properties["minecraft_version"]}")
