@@ -16,6 +16,12 @@ modId = "minecraft"
 type = "required"
 versionRange = "${mc_versions_neo}"
 
+[[dependencies.${mod_id}]]
+modId="neoforge"
+versionRange="${neo_loader_version_range}"
+ordering="NONE"
+side="BOTH"
+
 # Specify additional dependencies like this:
 #[[dependencies.${mod_id}]]
 #modId = "my_dependency_mod"
