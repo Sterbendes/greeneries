@@ -5,8 +5,8 @@ on: release
 # TODO: for automatic publishing, set your project's modrinth and curseforge IDs here
 # See "Automatic Release Publishing" section in README for details
 env:
-  MODRINTH_ID: abcdefgh
-  CURSEFORGE_ID: 1234567
+  MODRINTH_ID: D2GNkNG5
+  CURSEFORGE_ID: 1352534
 
 jobs:
   build:
