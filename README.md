@@ -32,7 +32,7 @@ We’re introducing new variations of existing plants, along with commonly found
 ## Compatibility
 This mod aims to be as compatible as possible with any other world generation mods, including Terralith, Biomes O' Plenty, Terra, Tectonic and similar mods.
 
-If you find incompatibilites/weird behavior when greeneries is used with world generation mods like these, please let us know!
+If you find incompatibilities/weird behavior when greeneries is used with world generation mods like these, please let us know!
 
 ## Contact
-If you find any bugs, incompatibilites or have any questions, always feel free to open an issue on GitHub, or contact us on discord ([player.005](https://discord.com/users/650714531844194304) and [sterbendes](https://discord.com/users/692286789616140308)).
+If you find any bugs, incompatibilities or have any questions, always feel free to open an issue on GitHub, or contact us on discord ([player.005](https://discord.com/users/650714531844194304) and [sterbendes](https://discord.com/users/692286789616140308)).
