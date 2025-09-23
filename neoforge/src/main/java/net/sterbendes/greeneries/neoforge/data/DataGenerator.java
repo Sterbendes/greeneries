@@ -1,4 +1,4 @@
-package net.sterbendes.greeneries.data;
+package net.sterbendes.greeneries.neoforge.data;
 
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.loot.LootTableProvider;

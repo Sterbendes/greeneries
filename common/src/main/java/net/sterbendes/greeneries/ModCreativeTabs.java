@@ -28,5 +28,6 @@ public abstract class ModCreativeTabs {
         return ModBlocks.getAllGreeneriesBlocks().stream().map(Holder::value).toArray(ItemLike[]::new);
     }
 
+    @SuppressWarnings("EmptyMethod")
     static void init() { }
 }

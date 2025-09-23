@@ -1,4 +1,4 @@
-package net.sterbendes.greeneries.data;
+package net.sterbendes.greeneries.neoforge.data;
 
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.core.Holder;

@@ -75,18 +75,18 @@ public class ModFabric implements ModInitializer {
     private static class GreeneriesFabricPlatform implements GreeneriesPlatform {
 
         @Override
-        public void onServerStart(@NotNull Consumer<MinecraftServer> consumer) {
+        public void onServerStart(Consumer<MinecraftServer> consumer) {
             ServerLifecycleEvents.SERVER_STARTING.register(consumer::accept);
         }
 
         @Override
-        public void onClientStart(@NotNull Consumer<Minecraft> consumer) {
+        public void onClientStart(Consumer<Minecraft> consumer) {
             ClientLifecycleEvents.CLIENT_STARTED.register(consumer::accept);
         }
 
         @Contract(value = " -> new", pure = true)
         @Override
-        public CreativeModeTab.@NotNull Builder creativeTabBuilder() {
+        public CreativeModeTab.Builder creativeTabBuilder() {
             return FabricItemGroup.builder();
         }
 

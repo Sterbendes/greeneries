@@ -20,6 +20,6 @@ public class MinecraftServerMixin {
 
     @Inject(method = "<init>", at = @At("RETURN"))
     void registerBiomeModifiers(Thread serverThread, LevelStorageSource.LevelStorageAccess storageSource, PackRepository packRepository, WorldStem worldStem, Proxy proxy, DataFixer fixerUpper, Services services, ChunkProgressListenerFactory progressListenerFactory, CallbackInfo ci) {
-        ModFabric.doBiomeModifications((MinecraftServer) (Object) this);
+        ModFabric.doBiomeModifications();
     }
 }

@@ -133,6 +133,7 @@ public abstract class ModBlocks {
         return allGreeneriesBlocks.get(name);
     }
 
+    @SuppressWarnings("EmptyMethod")
     @ApiStatus.Internal
     public static void init() { }
 }
