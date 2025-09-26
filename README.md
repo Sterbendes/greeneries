@@ -35,4 +35,4 @@ This mod aims to be as compatible as possible with any other world generation mo
 If you find incompatibilities/weird behavior when greeneries is used with world generation mods like these, please let us know!
 
 ## Contact
-If you find any bugs, incompatibilities or have any questions, always feel free to open an issue on GitHub, or contact us on discord ([player.005](https://discord.com/users/650714531844194304) and [sterbendes](https://discord.com/users/692286789616140308)).
+If you find any bugs, incompatibilities or have any questions, always feel free to [open an issue on GitHub](https://github.com/Sterbendes/greeneries/issues/new/choose), or contact us on discord ([player.005](https://discord.com/users/650714531844194304) and [sterbendes](https://discord.com/users/692286789616140308)).
