@@ -1,6 +1,8 @@
 name: Build and Release
 
-on: release
+on:
+  release:
+    types: [published]
 
 # TODO: for automatic publishing, set your project's modrinth and curseforge IDs here
 # See "Automatic Release Publishing" section in README for details
