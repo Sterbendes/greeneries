@@ -67,8 +67,8 @@ public class ModFabric implements ModInitializer {
         }
 
         @Override
-        public void setBlockColor(Supplier<Block> block, BlockColor color) {
-            onClientStart(mc -> ColorProviderRegistry.BLOCK.register(color, block.get()));
+        public void setBlockColor(Supplier<Block> block, GBlockColor color) {
+            onClientStart(mc -> ColorProviderRegistry.BLOCK.register(color::getColor, block.get()));
         }
     }
 }
