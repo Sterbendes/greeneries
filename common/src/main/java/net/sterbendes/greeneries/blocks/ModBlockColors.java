@@ -1,15 +1,17 @@
 package net.sterbendes.greeneries.blocks;
 
-import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.GrassColor;
+import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.Nullable;
 
 public abstract class ModBlockColors {
 
-    public static final BlockColor VARYING_GRASS_BLOCK_COLOR = (blockState, blockAndTintGetter, blockPos, i) -> {
+    public static final GBlockColor VARYING_GRASS_BLOCK_COLOR = (blockState, blockAndTintGetter, blockPos, i) -> {
         var color = blockAndTintGetter != null && blockPos != null
             ? BiomeColors.getAverageGrassColor(blockAndTintGetter, blockPos)
             : GrassColor.getDefaultColor();
@@ -24,7 +26,7 @@ public abstract class ModBlockColors {
         return color + rand1 + rand2 + rand3;
     };
 
-    public static final BlockColor VARYING_FERN_BLOCK_COLOR = (blockState, blockAndTintGetter, blockPos, i) -> {
+    public static final GBlockColor VARYING_FERN_BLOCK_COLOR = (blockState, blockAndTintGetter, blockPos, i) -> {
         var color = blockAndTintGetter != null && blockPos != null
             ? BiomeColors.getAverageGrassColor(blockAndTintGetter, blockPos)
             : GrassColor.getDefaultColor();
@@ -39,9 +41,13 @@ public abstract class ModBlockColors {
         return color + rand1 + rand2 + rand3;
     };
 
-    public static final BlockColor FOLIAGE_COLOR = (blockState, blockAndTintGetter, blockPos, i) ->
+    public static final GBlockColor FOLIAGE_COLOR = (blockState, blockAndTintGetter, blockPos, i) ->
         blockAndTintGetter != null && blockPos != null
             ? BiomeColors.getAverageFoliageColor(blockAndTintGetter, blockPos)
             : FoliageColor.FOLIAGE_DEFAULT;
 
+
+    public interface GBlockColor {
+        int getColor(BlockState blockState, @Nullable BlockAndTintGetter blockAndTintGetter, @Nullable BlockPos blockPos, int i);
+    }
 }

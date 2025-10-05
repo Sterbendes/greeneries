@@ -1,6 +1,5 @@
 package net.sterbendes.greeneries.blocks;
 
-import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -64,7 +63,7 @@ public abstract class ModBlocks {
         registerGrass(name, VARYING_GRASS_BLOCK_COLOR, variants);
     }
 
-    public static void registerGrass(String name, @Nullable BlockColor blockTint,
+    public static void registerGrass(String name, @Nullable GBlockColor blockTint,
                                      String... variants) {
         for (var variant : variants) {
             register(
@@ -75,7 +74,7 @@ public abstract class ModBlocks {
         }
     }
 
-    private static void register(String name, @Nullable BlockColor blockTint,
+    private static void register(String name, @Nullable GBlockColor blockTint,
                                  Function<BlockBehaviour.Properties, Block> blockSupplier,
                                  BlockBehaviour.Properties properties) {
         var id = ResourceKey.create(Registries.BLOCK, ResourceLocation.fromNamespaceAndPath(modID, name));
@@ -88,7 +87,7 @@ public abstract class ModBlocks {
         );
 
         platform.setRenderLayer(holder::value, ChunkSectionLayer.CUTOUT);
-        if (blockTint != null) platform.setBlockColor(holder::value, blockTint);
+        if (blockTint != null && platform.isClient()) platform.setBlockColor(holder::value, blockTint);
 
         allGreeneriesBlocks.put(name, holder);
     }

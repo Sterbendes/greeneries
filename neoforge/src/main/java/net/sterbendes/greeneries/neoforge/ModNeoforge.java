@@ -70,8 +70,8 @@ public class ModNeoforge {
         }
 
         @Override
-        public void setBlockColor(Supplier<Block> block, BlockColor color) {
-            modEventBus.addListener(RegisterColorHandlersEvent.Block.class, event -> event.register(color,
+        public void setBlockColor(Supplier<Block> block, GBlockColor color) {
+            modEventBus.addListener(RegisterColorHandlersEvent.Block.class, event -> event.register(color::getColor,
                 block.get()));
         }
 
