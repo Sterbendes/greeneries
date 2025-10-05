@@ -5,13 +5,18 @@ import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.sterbendes.greeneries.blocks.ModBlockColors.GBlockColor;
 import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -44,4 +49,6 @@ public interface GreeneriesPlatform {
             return false;
         }
     }
+
+    void addFeature(TagKey<Biome> biomes, ResourceKey<PlacedFeature> feature, @Nullable TagKey<Biome> deniedBiomes);
 }

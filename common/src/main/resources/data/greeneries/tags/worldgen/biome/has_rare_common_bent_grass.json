@@ -1,0 +1,9 @@
+{
+  "values": [
+    "#c:is_plains",
+    "#c:is_forest"
+  ],
+  "remove": [
+    "#greeneries:has_common_common_bent_grass"
+  ]
+}

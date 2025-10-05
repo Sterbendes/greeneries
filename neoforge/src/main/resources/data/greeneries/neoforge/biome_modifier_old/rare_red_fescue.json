@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#greeneries:has_rare_red_fescue",
+  "features": "greeneries:patch_red_fescue_rare",
+  "step": "vegetal_decoration"
+}

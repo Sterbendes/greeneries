@@ -3,7 +3,7 @@
 import net.fabricmc.loom.task.RemapJarTask
 
 plugins {
-    id("fabric-loom") version "1.10-SNAPSHOT"
+    id("fabric-loom") version "1.11-SNAPSHOT"
 }
 
 // add a repositories block here for fabric-only dependencies if you need it
