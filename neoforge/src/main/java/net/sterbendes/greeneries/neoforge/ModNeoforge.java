@@ -14,6 +14,7 @@ import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
@@ -69,6 +70,11 @@ public class ModNeoforge {
         @Override
         public void setRenderLayer(Supplier<Block> block, RenderType renderType) {
             onClientStart(mc -> ItemBlockRenderTypes.setRenderLayer(block.get(), renderType));
+        }
+
+        @Override
+        public boolean isClient() {
+            return FMLEnvironment.dist.isClient();
         }
 
         @Override

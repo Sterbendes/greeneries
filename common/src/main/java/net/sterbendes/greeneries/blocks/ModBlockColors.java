@@ -3,6 +3,7 @@ package net.sterbendes.greeneries.blocks;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.FoliageColor;
 import net.minecraft.world.level.GrassColor;
@@ -46,8 +47,13 @@ public abstract class ModBlockColors {
             ? BiomeColors.getAverageFoliageColor(blockAndTintGetter, blockPos)
             : FoliageColor.getDefaultColor();
 
+    public static final GItemColor GRASS_ITEM_COLOR = (stack, i) -> GrassColor.getDefaultColor();
 
     public interface GBlockColor {
         int getColor(BlockState blockState, @Nullable BlockAndTintGetter blockAndTintGetter, @Nullable BlockPos blockPos, int i);
+    }
+
+    public interface GItemColor {
+        int getColor(ItemStack itemStack, int i);
     }
 }

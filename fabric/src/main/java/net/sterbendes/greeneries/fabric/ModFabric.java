@@ -80,7 +80,7 @@ public class ModFabric implements ModInitializer {
 
         @Override
         public void onClientStart(Consumer<Minecraft> consumer) {
-            ClientLifecycleEvents.CLIENT_STARTED.register(consumer::accept);
+            if (isClient()) ClientLifecycleEvents.CLIENT_STARTED.register(consumer::accept);
         }
 
         @Contract(value = " -> new", pure = true)

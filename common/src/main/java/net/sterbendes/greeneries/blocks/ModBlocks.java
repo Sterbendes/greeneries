@@ -1,12 +1,10 @@
 package net.sterbendes.greeneries.blocks;
 
-import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.GrassColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.DoublePlantBlock;
@@ -27,8 +25,6 @@ import static net.sterbendes.greeneries.blocks.ModBlockColors.*;
 public abstract class ModBlocks {
 
     private static final Map<String, Holder<Block>> allGreeneriesBlocks = new LinkedHashMap<>();
-
-    public static final ItemColor GRASS_ITEM_COLOR = (stack, i) -> GrassColor.getDefaultColor();
 
     static {
         registerVariants("grass", "very_short", "bushy", "medium");
@@ -59,7 +55,7 @@ public abstract class ModBlocks {
         registerVariants(name, VARYING_GRASS_BLOCK_COLOR, GRASS_ITEM_COLOR, variants);
     }
 
-    public static void registerVariants(String name, @Nullable GBlockColor blockTint, @Nullable ItemColor itemTint,
+    public static void registerVariants(String name, @Nullable GBlockColor blockTint, @Nullable GItemColor itemTint,
                                         String... variants) {
         for (var variant : variants) {
             register(
@@ -70,7 +66,7 @@ public abstract class ModBlocks {
         }
     }
 
-    private static void register(String name, @Nullable GBlockColor blockTint, @Nullable ItemColor itemTint,
+    private static void register(String name, @Nullable GBlockColor blockTint, @Nullable GItemColor itemTint,
                                  Supplier<Block> blockSupplier) {
         var holder = GreeneriesMod.register(name, BuiltInRegistries.BLOCK, blockSupplier);
         GreeneriesMod.register(
@@ -78,9 +74,9 @@ public abstract class ModBlocks {
             () -> new BlockItem(holder.value(), new Item.Properties())
         );
 
-        platform.setRenderLayer(holder::value, RenderType.cutout());
+        if (platform.isClient()) platform.setRenderLayer(holder::value, RenderType.cutout());
         if (blockTint != null && platform.isClient()) platform.setBlockColor(holder::value, blockTint);
-        if (itemTint != null) platform.setItemColor(holder::value, itemTint);
+        if (itemTint != null && platform.isClient()) platform.setItemColor(holder::value, itemTint::getColor);
 
         allGreeneriesBlocks.put(name, holder);
     }

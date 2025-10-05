@@ -39,7 +39,7 @@ public interface GreeneriesPlatform {
         try {
             Class.forName("net.minecraft.client.Minecraft");
             return true;
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | RuntimeException e) {
             return false;
         }
     }
