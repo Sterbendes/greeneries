@@ -1,0 +1,8 @@
+{
+  "values": [
+    "#c:is_hot/overworld"
+  ],
+  "remove": [
+    "#greeneries:has_common_red_fescue"
+  ]
+}

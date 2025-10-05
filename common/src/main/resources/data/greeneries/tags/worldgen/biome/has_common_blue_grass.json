@@ -1,0 +1,9 @@
+{
+  "values": [
+    "#c:is_cold/overworld",
+    "#c:is_floral"
+  ],
+  "remove": [
+    "#c:is_dead"
+  ]
+}

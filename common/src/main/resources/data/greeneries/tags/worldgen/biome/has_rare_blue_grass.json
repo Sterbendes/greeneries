@@ -1,0 +1,8 @@
+{
+  "values": [
+    "#c:is_plains"
+  ],
+  "remove": [
+    "#greeneries:has_common_blue_grass"
+  ]
+}
