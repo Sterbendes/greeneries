@@ -8,7 +8,6 @@ import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.Registries;
@@ -23,9 +22,9 @@ import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.sterbendes.greeneries.GreeneriesMod;
 import net.sterbendes.greeneries.GreeneriesPlatform;
+import net.sterbendes.greeneries.blocks.ModBlockColors.GBlockColor;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Contract;
-import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -96,8 +95,8 @@ public class ModFabric implements ModInitializer {
         }
 
         @Override
-        public void setBlockColor(Supplier<Block> block, BlockColor color) {
-            onClientStart(mc -> ColorProviderRegistry.BLOCK.register(color, block.get()));
+        public void setBlockColor(Supplier<Block> block, GBlockColor color) {
+            onClientStart(mc -> ColorProviderRegistry.BLOCK.register(color::getColor, block.get()));
         }
 
         @Override

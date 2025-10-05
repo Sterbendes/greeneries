@@ -1,7 +1,6 @@
 package net.sterbendes.greeneries.neoforge;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -23,6 +22,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.RegisterEvent;
 import net.sterbendes.greeneries.GreeneriesMod;
 import net.sterbendes.greeneries.GreeneriesPlatform;
+import net.sterbendes.greeneries.blocks.ModBlockColors.GBlockColor;
 import net.sterbendes.greeneries.neoforge.data.DataGenerator;
 import org.jetbrains.annotations.UnknownNullability;
 
@@ -72,8 +72,8 @@ public class ModNeoforge {
         }
 
         @Override
-        public void setBlockColor(Supplier<Block> block, BlockColor color) {
-            modEventBus.addListener(RegisterColorHandlersEvent.Block.class, event -> event.register(color,
+        public void setBlockColor(Supplier<Block> block, GBlockColor color) {
+            modEventBus.addListener(RegisterColorHandlersEvent.Block.class, event -> event.register(color::getColor,
                 block.get()));
         }
 

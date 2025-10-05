@@ -1,7 +1,6 @@
 package net.sterbendes.greeneries;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Holder;
@@ -11,6 +10,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.sterbendes.greeneries.blocks.ModBlockColors.GBlockColor;
 import org.jetbrains.annotations.Contract;
 
 import java.util.function.Consumer;
@@ -31,7 +31,7 @@ public interface GreeneriesPlatform {
 
     void onClientStart(Consumer<Minecraft> consumer);
 
-    void setBlockColor(Supplier<Block> block, BlockColor color);
+    void setBlockColor(Supplier<Block> block, GBlockColor color);
 
     void setItemColor(Supplier<ItemLike> item, ItemColor itemColor);
 
