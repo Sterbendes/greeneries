@@ -52,7 +52,7 @@ public class ModFabric implements ModInitializer {
 
         @Override
         public void onClientStart(Consumer<Minecraft> consumer) {
-            ClientLifecycleEvents.CLIENT_STARTED.register(consumer::accept);
+            if (isClient()) ClientLifecycleEvents.CLIENT_STARTED.register(consumer::accept);
         }
 
         @Contract(value = " -> new", pure = true)
@@ -68,7 +68,7 @@ public class ModFabric implements ModInitializer {
 
         @Override
         public void setBlockColor(Supplier<Block> block, GBlockColor color) {
-            onClientStart(mc -> ColorProviderRegistry.BLOCK.register(color::getColor, block.get()));
+            if (isClient()) onClientStart(mc -> ColorProviderRegistry.BLOCK.register(color::getColor, block.get()));
         }
     }
 }

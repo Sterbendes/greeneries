@@ -19,6 +19,7 @@ import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.world.BiomeModifier;
@@ -52,6 +53,11 @@ public class ModNeoforge {
     }
 
     private static class GreeneriesNeoforgePlatform implements GreeneriesPlatform {
+
+        @Override
+        public boolean isClient() {
+            return FMLEnvironment.getDist().isClient();
+        }
 
         @Override
         public void addFeature(TagKey<Biome> biomes, ResourceKey<PlacedFeature> feature,
