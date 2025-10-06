@@ -24,10 +24,12 @@ public class GreeneriesMod {
         ModBlocks.init();
         ModCreativeTabs.init();
 
-        platform.setBlockColor(() -> Blocks.SHORT_GRASS, ModBlockColors.VARYING_GRASS_BLOCK_COLOR);
-        platform.setBlockColor(() -> Blocks.TALL_GRASS, ModBlockColors.VARYING_GRASS_BLOCK_COLOR);
-        platform.setBlockColor(() -> Blocks.FERN, ModBlockColors.VARYING_FERN_BLOCK_COLOR);
-        platform.setBlockColor(() -> Blocks.LARGE_FERN, ModBlockColors.VARYING_FERN_BLOCK_COLOR);
+        if (platform.isClient()) {
+            platform.setBlockColor(() -> Blocks.SHORT_GRASS, ModBlockColors.VARYING_GRASS_BLOCK_COLOR);
+            platform.setBlockColor(() -> Blocks.TALL_GRASS, ModBlockColors.VARYING_GRASS_BLOCK_COLOR);
+            platform.setBlockColor(() -> Blocks.FERN, ModBlockColors.VARYING_FERN_BLOCK_COLOR);
+            platform.setBlockColor(() -> Blocks.LARGE_FERN, ModBlockColors.VARYING_FERN_BLOCK_COLOR);
+        }
     }
 
     @ApiStatus.Internal

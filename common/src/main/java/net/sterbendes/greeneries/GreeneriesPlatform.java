@@ -1,7 +1,6 @@
 package net.sterbendes.greeneries;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
@@ -9,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.block.Block;
+import net.sterbendes.greeneries.blocks.ModBlockColors.GBlockColor;
 import org.jetbrains.annotations.Contract;
 
 import java.util.function.Consumer;
@@ -29,13 +29,13 @@ public interface GreeneriesPlatform {
 
     void onClientStart(Consumer<Minecraft> consumer);
 
-    void setBlockColor(Supplier<Block> block, BlockColor color);
+    void setBlockColor(Supplier<Block> block, GBlockColor color);
 
     default boolean isClient() {
         try {
             Class.forName("net.minecraft.client.Minecraft");
             return true;
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | RuntimeException e) {
             return false;
         }
     }

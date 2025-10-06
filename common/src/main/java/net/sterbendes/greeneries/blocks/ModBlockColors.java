@@ -46,7 +46,6 @@ public abstract class ModBlockColors {
             ? BiomeColors.getAverageFoliageColor(blockAndTintGetter, blockPos)
             : FoliageColor.FOLIAGE_DEFAULT;
 
-
     public interface GBlockColor {
         int getColor(BlockState blockState, @Nullable BlockAndTintGetter blockAndTintGetter, @Nullable BlockPos blockPos, int i);
     }

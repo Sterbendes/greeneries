@@ -86,7 +86,7 @@ public abstract class ModBlocks {
                 ResourceLocation.fromNamespaceAndPath(modID, name))))
         );
 
-        platform.setRenderLayer(holder::value, ChunkSectionLayer.CUTOUT);
+        if (platform.isClient()) platform.setRenderLayer(holder::value, ChunkSectionLayer.CUTOUT);
         if (blockTint != null && platform.isClient()) platform.setBlockColor(holder::value, blockTint);
 
         allGreeneriesBlocks.put(name, holder);

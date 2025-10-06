@@ -1,7 +1,6 @@
 package net.sterbendes.greeneries.neoforge;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.core.Holder;
@@ -13,6 +12,7 @@ import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
@@ -21,6 +21,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.RegisterEvent;
 import net.sterbendes.greeneries.GreeneriesMod;
 import net.sterbendes.greeneries.GreeneriesPlatform;
+import net.sterbendes.greeneries.blocks.ModBlockColors.GBlockColor;
 import net.sterbendes.greeneries.neoforge.data.DataGenerator;
 import org.jetbrains.annotations.UnknownNullability;
 
@@ -67,6 +68,11 @@ public class ModNeoforge {
         @Override
         public void setRenderLayer(Supplier<Block> block, ChunkSectionLayer layer) {
             onClientStart(mc -> ItemBlockRenderTypes.setRenderLayer(block.get(), layer));
+        }
+
+        @Override
+        public boolean isClient() {
+            return FMLEnvironment.dist.isClient();
         }
 
         @Override
