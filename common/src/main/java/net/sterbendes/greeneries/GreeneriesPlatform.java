@@ -37,9 +37,10 @@ public interface GreeneriesPlatform {
 
     default boolean isClient() {
         try {
-            Class.forName("net.minecraft.client.Minecraft");
+            //noinspection ResultOfMethodCallIgnored
+            Minecraft.getInstance();
             return true;
-        } catch (ClassNotFoundException | RuntimeException e) {
+        } catch (Exception e) {
             return false;
         }
     }
