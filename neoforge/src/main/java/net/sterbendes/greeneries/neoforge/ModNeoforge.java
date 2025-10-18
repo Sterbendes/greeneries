@@ -5,9 +5,7 @@ import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Holder;
-import net.minecraft.core.HolderSet;
 import net.minecraft.core.Registry;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
@@ -16,7 +14,6 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
@@ -24,13 +21,11 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.common.world.BiomeModifier;
-import net.neoforged.neoforge.common.world.BiomeModifiers;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import net.neoforged.neoforge.registries.RegisterEvent;
+import net.sterbendes.greeneries.BiomeModifierFeatureEntry;
 import net.sterbendes.greeneries.GreeneriesMod;
 import net.sterbendes.greeneries.GreeneriesPlatform;
 import net.sterbendes.greeneries.blocks.ModBlockColors.GBlockColor;
@@ -59,23 +54,7 @@ public class ModNeoforge {
         @Override
         public void addFeature(TagKey<Biome> biomes, ResourceKey<PlacedFeature> feature,
                                @Nullable TagKey<Biome> deniedBiomes) {
-            modEventBus.addListener(RegisterEvent.class, event -> event.register(
-                NeoForgeRegistries.Keys.BIOME_MODIFIERS,
-                feature.location(),
-                () -> createBiomeModifier(biomes, feature, event)
-            ));
-        }
-
-        private static BiomeModifier createBiomeModifier(TagKey<Biome> biomes, ResourceKey<PlacedFeature> feature,
-                                                         RegisterEvent event) {
-            var biomeRegistry = event.getRegistry(Registries.BIOME);
-            assert biomeRegistry != null;
-            var featureRegistry = event.getRegistry(Registries.PLACED_FEATURE);
-            assert featureRegistry != null;
-            var biomeHolderSet = biomeRegistry.getOrCreateTag(biomes);
-            var featureHolder = HolderSet.direct(featureRegistry.getHolder(feature).orElseThrow());
-            return new BiomeModifiers.AddFeaturesBiomeModifier(biomeHolderSet, featureHolder,
-                GenerationStep.Decoration.VEGETAL_DECORATION);
+            DataGenerator.registerEntry(new BiomeModifierFeatureEntry(biomes, deniedBiomes, feature));
         }
 
         public <T> Holder<T> register(Registry<T> registry, ResourceLocation rl, Supplier<T> value) {

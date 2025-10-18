@@ -7,7 +7,6 @@ import net.minecraft.server.WorldStem;
 import net.minecraft.server.level.progress.ChunkProgressListenerFactory;
 import net.minecraft.server.packs.repository.PackRepository;
 import net.minecraft.world.level.storage.LevelStorageSource;
-import net.sterbendes.greeneries.fabric.ModFabric;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -20,6 +19,6 @@ public class MinecraftServerMixin {
 
     @Inject(method = "<init>", at = @At("RETURN"))
     void registerBiomeModifiers(Thread serverThread, LevelStorageSource.LevelStorageAccess storageSource, PackRepository packRepository, WorldStem worldStem, Proxy proxy, DataFixer fixerUpper, Services services, ChunkProgressListenerFactory progressListenerFactory, CallbackInfo ci) {
-        ModFabric.doBiomeModifications((MinecraftServer) (Object) this);
+//        ModFabric.doBiomeModifications((MinecraftServer) (Object) this);
     }
 }

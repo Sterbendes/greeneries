@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#greeneries:has_royal_fern",
+  "features": "greeneries:patch_royal_fern",
+  "step": "vegetal_decoration"
+}
