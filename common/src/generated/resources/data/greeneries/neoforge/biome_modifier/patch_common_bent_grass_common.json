@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "#greeneries:has_common_common_bent_grass",
+  "features": "greeneries:patch_common_bent_grass_common",
+  "step": "vegetal_decoration"
+}
