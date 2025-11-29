@@ -48,7 +48,7 @@ public class GreeneriesMod {
     private static void registerBiomeModifiers(GreeneriesPlatform platform) {
         var variants = List.of("red_fescue", "common_bent_grass", "blue_grass");
 
-        var noVariants = List.of("reed", "royal_fern");
+        var noVariants = List.of("reeds", "royal_fern");
 
         for (String str : variants) {
             var commonTag = TagKey.create(Registries.BIOME, ResourceLocation.parse("greeneries:has_common_" + str));

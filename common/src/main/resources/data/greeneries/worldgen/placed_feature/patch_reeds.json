@@ -1,5 +1,5 @@
 {
-  "feature": "greeneries:patch_reed",
+  "feature": "greeneries:meta_patch_reed",
   "placement": [
     {
       "type": "minecraft:noise_threshold_count",

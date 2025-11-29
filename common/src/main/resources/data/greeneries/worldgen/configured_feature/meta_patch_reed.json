@@ -1,0 +1,96 @@
+{
+  "type": "minecraft:random_patch",
+  "config": {
+    "tries": 5,
+    "xz_spread": 10,
+    "y_spread": 0,
+    "feature": {
+      "feature": {
+        "config": {
+          "features": [
+            {
+              "chance": 0.5,
+              "feature": {
+                "feature": "greeneries:patch_reed",
+                "placement": []
+              }
+            },
+            {
+              "chance": 0.5,
+              "feature": {
+                "feature": "greeneries:patch_cattail",
+                "placement": []
+              }
+            }
+          ],
+          "default": {
+            "feature": "greeneries:patch_reed",
+            "placement": []
+          }
+        },
+        "type": "minecraft:random_selector"
+      },
+      "placement": [
+        {
+          "type": "minecraft:block_predicate_filter",
+          "predicate": {
+            "type": "all_of",
+            "predicates": [
+              {
+                "type": "would_survive",
+                "state": {
+                  "Name": "greeneries:reed"
+                }
+              },
+              {
+                "type": "matching_fluids",
+                "offset": [
+                  0,
+                  0,
+                  0
+                ],
+                "fluids": "water"
+              },
+              {
+                "type": "matching_fluids",
+                "offset": [
+                  1,
+                  0,
+                  0
+                ],
+                "fluids": "water"
+              },
+              {
+                "type": "matching_fluids",
+                "offset": [
+                  -1,
+                  0,
+                  0
+                ],
+                "fluids": "water"
+              },
+              {
+                "type": "matching_fluids",
+                "offset": [
+                  0,
+                  0,
+                  1
+                ],
+                "fluids": "water"
+              },
+              {
+                "type": "matching_fluids",
+                "offset": [
+                  0,
+                  0,
+                  -1
+                ],
+                "fluids": "water"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

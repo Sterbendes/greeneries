@@ -1,0 +1,44 @@
+{
+  "feature": "greeneries:patch_cattail",
+  "placement": [
+    {
+      "type": "minecraft:block_predicate_filter",
+      "predicate": {
+        "type": "all_of",
+        "predicates": [
+          {
+            "type": "would_survive",
+            "state": {
+              "Name": "greeneries:cattail"
+            }
+          },
+          {
+            "type": "matching_fluids",
+            "offset": [0, 0, 0],
+            "fluids": "water"
+          },
+          {
+            "type": "matching_fluids",
+            "offset": [2, 0, 0],
+            "fluids": "water"
+          },
+          {
+            "type": "matching_fluids",
+            "offset": [-2, 0, 0],
+            "fluids": "water"
+          },
+          {
+            "type": "matching_fluids",
+            "offset": [0, 0, 2],
+            "fluids": "water"
+          },
+          {
+            "type": "matching_fluids",
+            "offset": [0, 0, -2],
+            "fluids": "water"
+          }
+        ]
+      }
+    }
+  ]
+}
