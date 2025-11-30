@@ -57,6 +57,10 @@
           }
         ]
       }
+    },
+    {
+      "type": "rarity_filter",
+      "chance": 2
     }
   ]
 }
