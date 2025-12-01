@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "greeneries:block/small_flowers/small_azure_bluet1"
+      },
+      {
+        "model": "greeneries:block/small_flowers/small_azure_bluet2"
+      }
+    ]
+  }
+}

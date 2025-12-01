@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "greeneries:block/very_small_flowers/very_small_allium1"
+      },
+      {
+        "model": "greeneries:block/very_small_flowers/very_small_allium2"
+      },
+      {
+        "model": "greeneries:block/very_small_flowers/very_small_allium3"
+      }
+    ]
+  }
+}

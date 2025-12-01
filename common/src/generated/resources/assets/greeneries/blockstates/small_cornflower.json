@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "greeneries:block/small_flowers/small_cornflower1"
+      },
+      {
+        "model": "greeneries:block/small_flowers/small_cornflower2"
+      }
+    ]
+  }
+}

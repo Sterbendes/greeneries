@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "greeneries:block/very_small_flowers/very_small_dandelion1"
+      },
+      {
+        "model": "greeneries:block/very_small_flowers/very_small_dandelion2"
+      },
+      {
+        "model": "greeneries:block/very_small_flowers/very_small_dandelion3"
+      }
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "greeneries:block/small_flowers/small_oxeye_daisy1"
+      },
+      {
+        "model": "greeneries:block/small_flowers/small_oxeye_daisy2"
+      }
+    ]
+  }
+}

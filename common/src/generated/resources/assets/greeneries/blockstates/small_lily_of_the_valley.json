@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "greeneries:block/small_flowers/small_lily_of_the_valley1"
+      },
+      {
+        "model": "greeneries:block/small_flowers/small_lily_of_the_valley2"
+      }
+    ]
+  }
+}

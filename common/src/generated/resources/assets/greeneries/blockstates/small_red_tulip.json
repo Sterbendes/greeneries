@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "greeneries:block/small_flowers/small_red_tulip1"
+      },
+      {
+        "model": "greeneries:block/small_flowers/small_red_tulip2"
+      }
+    ]
+  }
+}

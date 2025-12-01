@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "greeneries:block/small_flowers/small_blue_orchid1"
+  }
+}

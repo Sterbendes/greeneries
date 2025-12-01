@@ -1,0 +1,15 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "greeneries:block/very_small_flowers/very_small_pink_tulip1"
+      },
+      {
+        "model": "greeneries:block/very_small_flowers/very_small_pink_tulip2"
+      },
+      {
+        "model": "greeneries:block/very_small_flowers/very_small_pink_tulip3"
+      }
+    ]
+  }
+}

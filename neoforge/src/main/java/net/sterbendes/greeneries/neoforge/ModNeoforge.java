@@ -54,7 +54,7 @@ public class ModNeoforge {
         @Override
         public void addFeature(TagKey<Biome> biomes, ResourceKey<PlacedFeature> feature,
                                @Nullable TagKey<Biome> deniedBiomes) {
-            DataGenerator.registerEntry(new BiomeModifierFeatureEntry(biomes, deniedBiomes, feature));
+            DataGenerator.registerBiomeModifierEntry(new BiomeModifierFeatureEntry(biomes, deniedBiomes, feature));
         }
 
         public <T> Holder<T> register(Registry<T> registry, ResourceLocation rl, Supplier<T> value) {
