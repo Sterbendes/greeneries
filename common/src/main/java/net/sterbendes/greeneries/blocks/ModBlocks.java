@@ -5,10 +5,7 @@ import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.DoublePlantBlock;
-import net.minecraft.world.level.block.TallGrassBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.sterbendes.greeneries.GreeneriesMod;
 import org.jetbrains.annotations.ApiStatus;
@@ -48,6 +45,9 @@ public abstract class ModBlocks {
             () -> new ReedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_SEAGRASS)));
         register("reed", FOLIAGE_COLOR, null,
             () -> new ReedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_SEAGRASS)));
+
+        register("small_allium", null, null,
+            () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY)){ });
     }
 
 
