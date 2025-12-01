@@ -1,3 +1,6 @@
 {
-  "parent": "greeneries:block/small_azure_bluet1"
+  "parent": "minecraft:generated/item",
+  "textures": {
+    "layer0": "greeneries:small_azure_bluet"
+  }
 }

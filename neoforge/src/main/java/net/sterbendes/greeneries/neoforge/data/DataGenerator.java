@@ -78,20 +78,28 @@ public class DataGenerator {
 
                 for (var blockHolder : ModBlocks.small_flowers) {
                     var location = Objects.requireNonNull(blockHolder.getKey()).location();
-                    this.simpleBlockItem(
-                        blockHolder.value(),
-                        new ModelFile.ExistingModelFile(blockHolder.getKey().location().withPrefix("block" +
-                            "/small_flowers/").withSuffix("1"), helper)
+                    this.itemModels().generatedModels.put(
+                        location,
+                        new ItemModelBuilder(location.withPrefix("item/"), helper)
+                            .texture("layer0", location)
+                            .parent(new ModelFile.ExistingModelFile(
+                                ResourceLocation.withDefaultNamespace("generated/item"),
+                                helper
+                            ))
                     );
                     register(blockHolder.value(), location, "block/small_flowers/", "1");
                     register(blockHolder.value(), location, "block/small_flowers/", "2");
                 }
                 for (var blockHolder : ModBlocks.very_small_flowers) {
                     var location = Objects.requireNonNull(blockHolder.getKey()).location();
-                    this.simpleBlockItem(
-                        blockHolder.value(),
-                        new ModelFile.ExistingModelFile(blockHolder.getKey().location().withPrefix("block" +
-                            "/very_small_flowers/").withSuffix("1"), helper)
+                    this.itemModels().generatedModels.put(
+                        location,
+                        new ItemModelBuilder(location.withPrefix("item/"), helper)
+                            .texture("layer0", location)
+                            .parent(new ModelFile.ExistingModelFile(
+                                ResourceLocation.withDefaultNamespace("generated/item"),
+                                helper
+                            ))
                     );
                     register(blockHolder.value(), location, "block/very_small_flowers/", "1");
                     register(blockHolder.value(), location, "block/very_small_flowers/", "2");

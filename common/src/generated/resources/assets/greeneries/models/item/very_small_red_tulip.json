@@ -1,3 +1,6 @@
 {
-  "parent": "greeneries:block/very_small_red_tulip1"
+  "parent": "minecraft:generated/item",
+  "textures": {
+    "layer0": "greeneries:very_small_red_tulip"
+  }
 }

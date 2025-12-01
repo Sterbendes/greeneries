@@ -1,3 +1,6 @@
 {
-  "parent": "greeneries:block/very_small_allium1"
+  "parent": "minecraft:generated/item",
+  "textures": {
+    "layer0": "greeneries:very_small_allium"
+  }
 }

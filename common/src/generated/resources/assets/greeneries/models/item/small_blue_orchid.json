@@ -1,3 +1,6 @@
 {
-  "parent": "greeneries:block/small_blue_orchid1"
+  "parent": "minecraft:generated/item",
+  "textures": {
+    "layer0": "greeneries:small_blue_orchid"
+  }
 }
