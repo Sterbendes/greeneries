@@ -81,9 +81,9 @@ public class DataGenerator {
                     this.itemModels().generatedModels.put(
                         location,
                         new ItemModelBuilder(location.withPrefix("item/"), helper)
-                            .texture("layer0", location)
+                            .texture("layer0", location.withPrefix("block/small_flowers/").withSuffix("1"))
                             .parent(new ModelFile.ExistingModelFile(
-                                ResourceLocation.withDefaultNamespace("generated/item"),
+                                ResourceLocation.withDefaultNamespace("item/generated"),
                                 helper
                             ))
                     );
@@ -95,9 +95,9 @@ public class DataGenerator {
                     this.itemModels().generatedModels.put(
                         location,
                         new ItemModelBuilder(location.withPrefix("item/"), helper)
-                            .texture("layer0", location)
+                            .texture("layer0", location.withPrefix("block/very_small_flowers/").withSuffix("2"))
                             .parent(new ModelFile.ExistingModelFile(
-                                ResourceLocation.withDefaultNamespace("generated/item"),
+                                ResourceLocation.withDefaultNamespace("item/generated"),
                                 helper
                             ))
                     );

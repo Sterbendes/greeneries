@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:generated/item",
+  "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "greeneries:small_lily_of_the_valley"
+    "layer0": "greeneries:block/small_flowers/small_lily_of_the_valley1"
   }
 }

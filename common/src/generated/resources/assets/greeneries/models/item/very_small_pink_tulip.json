@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:generated/item",
+  "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "greeneries:very_small_pink_tulip"
+    "layer0": "greeneries:block/very_small_flowers/very_small_pink_tulip2"
   }
 }

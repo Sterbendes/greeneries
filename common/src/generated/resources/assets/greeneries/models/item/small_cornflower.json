@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:generated/item",
+  "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "greeneries:small_cornflower"
+    "layer0": "greeneries:block/small_flowers/small_cornflower1"
   }
 }
