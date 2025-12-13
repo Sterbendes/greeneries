@@ -62,8 +62,6 @@ public abstract class ModBlocks {
         register("reed", FOLIAGE_COLOR, null,
             () -> new ReedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_SEAGRASS)));
 
-        register("small_allium", null, null,
-            () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY)) { });
 
         registerFlowers();
     }
