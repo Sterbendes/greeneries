@@ -27,5 +27,30 @@
 
   "block.greeneries.tall_royal_fern": "Tall Royal Fern",
   "block.greeneries.medium_royal_fern": "Medium Royal Fern",
-  "block.greeneries.short_royal_fern": "Short Royal Fern"
+  "block.greeneries.short_royal_fern": "Short Royal Fern",
+
+  "block.greeneries.small_allium": "Small Allium",
+  "block.greeneries.very_small_allium": "Very Small Allium",
+  "block.greeneries.small_azure_bluet": "Small Azure Bluet",
+  "block.greeneries.very_small_azure_bluet": "Very Small Azure Bluet",
+  "block.greeneries.small_blue_orchid": "Small Blue Orchid",
+  "block.greeneries.very_small_blue_orchid": "Very Small Blue Orchid",
+  "block.greeneries.small_cornflower": "Small Cornflower",
+  "block.greeneries.very_small_cornflower": "Very Small Cornflower",
+  "block.greeneries.small_dandelion": "Small Dandelion",
+  "block.greeneries.very_small_dandelion": "Very Small Dandelion",
+  "block.greeneries.small_lily_of_the_valley": "Small Lily of the Valley",
+  "block.greeneries.very_small_lily_of_the_valley": "Very Small Lily of the Valley",
+  "block.greeneries.small_oxeye_daisy": "Small Oxeye Daisy",
+  "block.greeneries.very_small_oxeye_daisy": "Very Small Oxeye Daisy",
+  "block.greeneries.small_poppy": "Small Poppy",
+  "block.greeneries.very_small_poppy": "Very Small Poppy",
+  "block.greeneries.small_red_tulip": "Small Red Tulip",
+  "block.greeneries.very_small_red_tulip": "Very Small Red Tulip",
+  "block.greeneries.small_orange_tulip": "Small Orange Tulip",
+  "block.greeneries.very_small_orange_tulip": "Very Small Orange Tulip",
+  "block.greeneries.small_white_tulip": "Small White Tulip",
+  "block.greeneries.very_small_white_tulip": "Very Small White Tulip",
+  "block.greeneries.small_pink_tulip": "Small Pink Tulip",
+  "block.greeneries.very_small_pink_tulip": "Very Small Pink Tulip"
 }
