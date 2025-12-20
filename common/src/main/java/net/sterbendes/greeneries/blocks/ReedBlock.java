@@ -83,15 +83,15 @@ public class ReedBlock extends DoublePlantBlock implements BucketPickup, LiquidB
 
     @Override
     public boolean placeLiquid(LevelAccessor level, BlockPos pos, BlockState state, FluidState fluidState) {
-        if (fluidState.is(FluidTags.WATER) && state.getValue(HALF) == DoubleBlockHalf.LOWER && !state.getValue(WATERLOGGED)) {
-            if (!level.isClientSide()) {
-                level.setBlock(pos, state.setValue(BlockStateProperties.WATERLOGGED, true), 3);
-                level.scheduleTick(pos, fluidState.getType(), fluidState.getType().getTickDelay(level));
-            }
+        if (!fluidState.is(FluidTags.WATER) || state.getValue(HALF) != DoubleBlockHalf.LOWER || state.getValue(WATERLOGGED))
+            return false;
 
-            return true;
+        if (!level.isClientSide()) {
+            level.setBlock(pos, state.setValue(BlockStateProperties.WATERLOGGED, true), 3);
+            level.scheduleTick(pos, fluidState.getType(), fluidState.getType().getTickDelay(level));
         }
-        return false;
+
+        return true;
     }
 
     @Override

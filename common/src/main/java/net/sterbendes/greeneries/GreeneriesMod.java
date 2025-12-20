@@ -6,6 +6,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.sterbendes.greeneries.blocks.ModBlockColors;
 import net.sterbendes.greeneries.blocks.ModBlocks;
@@ -29,6 +30,7 @@ public class GreeneriesMod {
         ModBlocks.init();
         ModCreativeTabs.init();
 
+        registerCompostables();
         registerBiomeModifiers(platform);
         setVanillaBlockColors(platform);
     }
@@ -43,6 +45,23 @@ public class GreeneriesMod {
     @ApiStatus.Internal
     public static <T> Holder<T> register(String name, Registry<T> registry, Supplier<T> obj) {
         return platform.register(registry, ResourceLocation.fromNamespaceAndPath(modID, name), obj);
+    }
+
+    private static void registerCompostables() {
+        for (Holder<Block> grassVariant : ModBlocks.grass_variants) {
+            platform.setCompostable(grassVariant, 0.4f);
+        }
+        for (Holder<Block> smallFlower : ModBlocks.small_flowers) {
+            platform.setCompostable(smallFlower, 0.4f);
+        }
+        for (Holder<Block> verySmallFlower : ModBlocks.very_small_flowers) {
+            platform.setCompostable(verySmallFlower, 0.3f);
+        }
+        for (Holder<Block> fern : ModBlocks.getFiltered("fern")) {
+            platform.setCompostable(fern, 0.5f);
+        }
+        platform.setCompostable(ModBlocks.REED, 0.65f);
+        platform.setCompostable(ModBlocks.CATTAIL, 0.65f);
     }
 
     private static void registerBiomeModifiers(GreeneriesPlatform platform) {

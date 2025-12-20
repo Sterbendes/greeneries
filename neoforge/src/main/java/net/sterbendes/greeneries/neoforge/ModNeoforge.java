@@ -1,5 +1,6 @@
 package net.sterbendes.greeneries.neoforge;
 
+import it.unimi.dsi.fastutil.objects.Object2FloatArrayMap;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
@@ -30,6 +31,7 @@ import net.sterbendes.greeneries.GreeneriesMod;
 import net.sterbendes.greeneries.GreeneriesPlatform;
 import net.sterbendes.greeneries.blocks.ModBlockColors.GBlockColor;
 import net.sterbendes.greeneries.neoforge.data.DataGenerator;
+import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.Nullable;
 import org.jetbrains.annotations.UnknownNullability;
 
@@ -40,6 +42,9 @@ import java.util.function.Supplier;
 public class ModNeoforge {
 
     public static @UnknownNullability IEventBus modEventBus;
+
+    @ApiStatus.Internal
+    public static final Object2FloatArrayMap<Holder<? extends ItemLike>> compostables = new Object2FloatArrayMap<>();
 
     public ModNeoforge(IEventBus modEventBus) {
         ModNeoforge.modEventBus = modEventBus;
@@ -55,6 +60,11 @@ public class ModNeoforge {
         public void addFeature(TagKey<Biome> biomes, ResourceKey<PlacedFeature> feature,
                                @Nullable TagKey<Biome> deniedBiomes) {
             DataGenerator.registerBiomeModifierEntry(new BiomeModifierFeatureEntry(biomes, deniedBiomes, feature));
+        }
+
+        @Override
+        public void setCompostable(Holder<? extends ItemLike> compostable, float chance) {
+            compostables.put(compostable, chance);
         }
 
         public <T> Holder<T> register(Registry<T> registry, ResourceLocation rl, Supplier<T> value) {

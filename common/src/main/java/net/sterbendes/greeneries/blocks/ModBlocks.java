@@ -13,6 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 import java.util.function.Supplier;
+import java.util.stream.Collectors;
 
 import static net.sterbendes.greeneries.GreeneriesMod.platform;
 import static net.sterbendes.greeneries.blocks.ModBlockColors.*;
@@ -21,12 +22,19 @@ public abstract class ModBlocks {
 
     private static final Map<String, Holder<Block>> allGreeneriesBlocks = new LinkedHashMap<>();
 
-    public static final List<Holder<Block>> generateSimpleBlockstates = new ArrayList<>();
+    public static final List<Holder<Block>> grass_variants = new ArrayList<>();
 
     public static final List<Holder<Block>> small_flowers = new ArrayList<>();
 
     public static final List<Holder<Block>> very_small_flowers = new ArrayList<>();
 
+
+    // REEDS
+    public static final Holder<Block> REED = register("reed", FOLIAGE_COLOR, null,
+        () -> new ReedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_SEAGRASS)));
+
+    public static final Holder<Block> CATTAIL = register("cattail", FOLIAGE_COLOR, null,
+        () -> new ReedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_SEAGRASS)));
 
     static {
         // GRASS VARIANTS
@@ -56,18 +64,12 @@ public abstract class ModBlocks {
         register("tall_royal_fern", VARYING_FERN_BLOCK_COLOR, null,
             () -> new DoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_FERN)) { });
 
-        // REEDS
-        register("cattail", FOLIAGE_COLOR, null,
-            () -> new ReedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_SEAGRASS)));
-        register("reed", FOLIAGE_COLOR, null,
-            () -> new ReedBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.TALL_SEAGRASS)));
-
-
         registerFlowers();
     }
 
     private static void registerFlowers() {
-        var flowerNames = List.of("allium", "azure_bluet", "blue_orchid", "cornflower", "dandelion", "lily_of_the_valley",
+        var flowerNames = List.of("allium", "azure_bluet", "blue_orchid", "cornflower", "dandelion",
+            "lily_of_the_valley",
             "orange_tulip", "oxeye_daisy", "pink_tulip", "poppy", "red_tulip", "white_tulip");
 
         for (Block block : BuiltInRegistries.BLOCK) {
@@ -82,20 +84,6 @@ public abstract class ModBlocks {
                 () -> new FlowerBlock(flowerBlock.getSuspiciousEffects(),
                     BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY))));
         }
-//
-//        for (var blockHolder : small_flowers) {
-//            generateSimpleBlockstates.put(blockHolder, new ResourceLocation[]{
-//                blockHolder.unwrapKey().orElseThrow().location().withSuffix("1"),
-//                blockHolder.unwrapKey().orElseThrow().location().withSuffix("2")
-//            });
-//        }
-//        for (var blockHolder : very_small_flowers) {
-//            generateSimpleBlockstates.put(blockHolder, new ResourceLocation[]{
-//                blockHolder.unwrapKey().orElseThrow().location().withSuffix("1"),
-//                blockHolder.unwrapKey().orElseThrow().location().withSuffix("2"),
-//                blockHolder.unwrapKey().orElseThrow().location().withSuffix("3")
-//            });
-//        }
     }
 
 
@@ -112,7 +100,7 @@ public abstract class ModBlocks {
                 () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { }
             );
             if (generateBlockState)
-                generateSimpleBlockstates.add(holder);
+                grass_variants.add(holder);
         }
     }
 
@@ -138,6 +126,12 @@ public abstract class ModBlocks {
 
     public static Holder<Block> get(String name) {
         return allGreeneriesBlocks.get(name);
+    }
+
+    public static Collection<Holder<Block>> getFiltered(String contains) {
+        return allGreeneriesBlocks.entrySet().stream()
+            .filter(it -> it.getKey().contains(contains))
+            .map(Map.Entry::getValue).collect(Collectors.toCollection(ArrayList::new));
     }
 
     @SuppressWarnings("EmptyMethod")

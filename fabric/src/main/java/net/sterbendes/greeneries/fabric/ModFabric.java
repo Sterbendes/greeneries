@@ -11,6 +11,7 @@ import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tags.TagKey;
@@ -18,6 +19,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.sterbendes.greeneries.GreeneriesMod;
@@ -45,6 +47,11 @@ public class ModFabric implements ModInitializer {
                 denied == null ? context -> context.hasTag(tag)
                     : context -> context.hasTag(tag) && !context.hasTag(denied);
             BiomeModifications.addFeature(predicate, GenerationStep.Decoration.VEGETAL_DECORATION, feature);
+        }
+
+        @Override
+        public void setCompostable(Holder<? extends ItemLike> compostable, float chance) {
+            ComposterBlock.COMPOSTABLES.put(compostable.value(), chance);
         }
 
         @Override
