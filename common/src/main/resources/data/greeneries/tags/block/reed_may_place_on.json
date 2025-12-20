@@ -3,6 +3,7 @@
     "#minecraft:dirt",
     "minecraft:gravel",
     "minecraft:mud",
+    "minecraft:clay",
     "#minecraft:sand"
   ]
 }

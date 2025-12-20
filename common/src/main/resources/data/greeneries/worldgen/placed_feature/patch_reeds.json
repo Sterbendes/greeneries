@@ -1,12 +1,6 @@
 {
-  "feature": "greeneries:meta_patch_reed",
+  "feature": "greeneries:patch_reeds",
   "placement": [
-    {
-      "type": "minecraft:noise_threshold_count",
-      "above_noise": 5,
-      "below_noise": 2,
-      "noise_level": 0
-    },
     {
       "type": "minecraft:in_square"
     },
@@ -37,30 +31,26 @@
           },
           {
             "type": "matching_fluids",
-            "offset": [3, 0, 0],
+            "offset": [2, 0, 0],
             "fluids": "water"
           },
           {
             "type": "matching_fluids",
-            "offset": [-3, 0, 0],
+            "offset": [-2, 0, 0],
             "fluids": "water"
           },
           {
             "type": "matching_fluids",
-            "offset": [0, 0, 3],
+            "offset": [0, 0, 2],
             "fluids": "water"
           },
           {
             "type": "matching_fluids",
-            "offset": [0, 0, -3],
+            "offset": [0, 0, -2],
             "fluids": "water"
           }
         ]
       }
-    },
-    {
-      "type": "rarity_filter",
-      "chance": 2
     }
   ]
 }
