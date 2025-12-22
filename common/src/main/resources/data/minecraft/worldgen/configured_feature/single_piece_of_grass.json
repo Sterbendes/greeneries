@@ -1,0 +1,52 @@
+{
+  "type": "minecraft:simple_block",
+  "config": {
+    "to_place": {
+      "type": "minecraft:weighted_state_provider",
+      "entries": [
+        {
+          "weight": 10,
+          "data": {
+            "Name": "minecraft:short_grass"
+          }
+        },
+        {
+          "weight": 5,
+          "data": {
+            "Name": "greeneries:very_short_grass"
+          }
+        },
+        {
+          "weight": 5,
+          "data": {
+            "Name": "greeneries:bushy_grass"
+          }
+        },
+        {
+          "weight": 4,
+          "data": {
+            "Name": "greeneries:medium_grass"
+          }
+        },
+        {
+          "weight": 3,
+          "data": {
+            "Name": "greeneries:short_red_fescue"
+          }
+        },
+        {
+          "weight": 2,
+          "data": {
+            "Name": "greeneries:very_short_red_fescue"
+          }
+        },
+        {
+          "weight": 1,
+          "data": {
+            "Name": "greeneries:medium_red_fescue"
+          }
+        }
+      ]
+    }
+  }
+}
