@@ -38,39 +38,57 @@ public abstract class ModBlocks {
 
     static {
         // GRASS VARIANTS
-        registerSimpleVariants("grass",
-            "very_short", "bushy", "medium");
+        registerVanillaGrassVariants();
 
-        registerSimpleVariants("red_fescue",
+        registerGrassVariants("red_fescue",
             "very_short", "short", "bushy", "medium");
 
-        registerVariants("common_bent",
+        registerGrassVariants("common_bent",
             VARYING_GRASS_BLOCK_COLOR, null, true,
             "very_short", "short", "bushy");
 
-        registerSimpleVariants("blue_grass",
+        registerGrassVariants("blue_grass",
             "very_short", "short", "bushy");
 
         // FERN VARIANTS
-        register("medium_eagle_fern", VARYING_FERN_BLOCK_COLOR, GRASS_ITEM_COLOR,
-            () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN)) { });
-        register("tall_eagle_fern", VARYING_FERN_BLOCK_COLOR, GRASS_ITEM_COLOR,
+        var tallEagleFern = register("tall_eagle_fern", VARYING_FERN_BLOCK_COLOR, GRASS_ITEM_COLOR,
             () -> new DoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_FERN)));
+        register("medium_eagle_fern", VARYING_FERN_BLOCK_COLOR, GRASS_ITEM_COLOR,
+            () -> new GreeneriesGrassBlock(Blocks.FERN, tallEagleFern)
+        );
 
-        register("short_royal_fern", VARYING_FERN_BLOCK_COLOR, null,
-            () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN)) { });
-        register("medium_royal_fern", VARYING_FERN_BLOCK_COLOR, null,
-            () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.FERN)) { });
-        register("tall_royal_fern", VARYING_FERN_BLOCK_COLOR, null,
+        var tallRoyalFern = register("tall_royal_fern", VARYING_FERN_BLOCK_COLOR, null,
             () -> new DoublePlantBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.LARGE_FERN)) { });
+        var mediumRoyalFern = register("medium_royal_fern", VARYING_FERN_BLOCK_COLOR, null,
+            () -> new GreeneriesGrassBlock(Blocks.FERN, tallRoyalFern));
+        register("short_royal_fern", VARYING_FERN_BLOCK_COLOR, null,
+            () -> new GreeneriesGrassBlock(Blocks.FERN, mediumRoyalFern));
+
 
         registerFlowers();
     }
 
+    private static void registerVanillaGrassVariants() {
+        grass_variants.add(register(
+            "very_short_grass",
+            VARYING_GRASS_BLOCK_COLOR, GRASS_ITEM_COLOR,
+            () -> new GreeneriesGrassBlock(Blocks.SHORT_GRASS, Blocks.SHORT_GRASS)
+        ));
+        grass_variants.add(register(
+            "bushy_grass",
+            VARYING_GRASS_BLOCK_COLOR, GRASS_ITEM_COLOR,
+            () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { }
+        ));
+        grass_variants.add(register(
+            "medium_grass",
+            VARYING_GRASS_BLOCK_COLOR, GRASS_ITEM_COLOR,
+            () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { }
+        ));
+    }
+
     private static void registerFlowers() {
         var flowerNames = List.of("allium", "azure_bluet", "blue_orchid", "cornflower", "dandelion",
-            "lily_of_the_valley",
-            "orange_tulip", "oxeye_daisy", "pink_tulip", "poppy", "red_tulip", "white_tulip");
+            "lily_of_the_valley", "orange_tulip", "oxeye_daisy", "pink_tulip", "poppy", "red_tulip", "white_tulip");
 
         for (Block block : BuiltInRegistries.BLOCK) {
             String path = BuiltInRegistries.BLOCK.getKey(block).getPath();
@@ -79,25 +97,28 @@ public abstract class ModBlocks {
             var flowerBlock = (FlowerBlock) block;
             small_flowers.add(register("small_" + path, null, null,
                 () -> new FlowerBlock(flowerBlock.getSuspiciousEffects(),
-                    BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY))));
+                    BlockBehaviour.Properties.ofFullCopy(flowerBlock))));
             very_small_flowers.add(register("very_small_" + path, null, null,
                 () -> new FlowerBlock(flowerBlock.getSuspiciousEffects(),
-                    BlockBehaviour.Properties.ofFullCopy(Blocks.POPPY))));
+                    BlockBehaviour.Properties.ofFullCopy(flowerBlock))));
         }
     }
 
 
-    public static void registerSimpleVariants(String name, String... variants) {
-        registerVariants(name, VARYING_GRASS_BLOCK_COLOR, GRASS_ITEM_COLOR, true, variants);
+    public static void registerGrassVariants(String name, String... variants) {
+        registerGrassVariants(name, VARYING_GRASS_BLOCK_COLOR, GRASS_ITEM_COLOR, true, variants);
     }
 
-    public static void registerVariants(String name, @Nullable GBlockColor blockTint, @Nullable GItemColor itemTint,
-                                        boolean generateBlockState, String... variants) {
-        for (var variant : variants) {
+    public static void registerGrassVariants(String name, @Nullable GBlockColor blockTint, @Nullable GItemColor itemTint,
+                                             boolean generateBlockState, String... variants) {
+        for (int i = 0; i < variants.length; i++) {
+            var variant = variants[i];
+            var next = i + 1 < variants.length ? variants[i + 1] + "_" + name : null;
+
             var holder = register(
                 variant + "_" + name,
                 blockTint, itemTint,
-                () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { }
+                () -> new GreeneriesGrassBlock(Blocks.SHORT_GRASS, get(next))
             );
             if (generateBlockState)
                 grass_variants.add(holder);
@@ -124,7 +145,7 @@ public abstract class ModBlocks {
         return allGreeneriesBlocks.values();
     }
 
-    public static Holder<Block> get(String name) {
+    public static Holder<Block> get(@Nullable String name) {
         return allGreeneriesBlocks.get(name);
     }
 
