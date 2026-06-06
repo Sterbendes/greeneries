@@ -1,5 +1,6 @@
 package net.sterbendes.greeneries.fabric;
 
+import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
@@ -8,6 +9,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.renderer.RenderType;
@@ -78,6 +80,11 @@ public class ModFabric implements ModInitializer {
         @Override
         public void setBlockColor(Supplier<Block> block, GBlockColor color) {
             onClientStart(mc -> ColorProviderRegistry.BLOCK.register(color::getColor, block.get()));
+        }
+
+        @Override
+        public boolean isClient() {
+            return FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT;
         }
 
         @Override

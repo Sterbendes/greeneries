@@ -32,7 +32,9 @@ public class GreeneriesMod {
 
         registerCompostables();
         registerBiomeModifiers(platform);
-        setVanillaBlockColors(platform);
+
+        if (platform.isClient())
+            setVanillaBlockColors(platform);
     }
 
     private static void setVanillaBlockColors(GreeneriesPlatform platform) {
