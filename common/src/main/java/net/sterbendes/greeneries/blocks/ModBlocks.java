@@ -64,7 +64,6 @@ public abstract class ModBlocks {
         register("short_royal_fern", VARYING_FERN_BLOCK_COLOR, null,
             () -> new GreeneriesGrassBlock(Blocks.FERN, mediumRoyalFern));
 
-
         registerFlowers();
     }
 
@@ -113,12 +112,12 @@ public abstract class ModBlocks {
                                              boolean generateBlockState, String... variants) {
         for (int i = 0; i < variants.length; i++) {
             var variant = variants[i];
-            var next = i + 1 < variants.length ? variants[i + 1] + "_" + name : null;
+            var nextVariant = i + 1 < variants.length ? variants[i + 1] + "_" + name : null;
 
             var holder = register(
                 variant + "_" + name,
                 blockTint, itemTint,
-                () -> new GreeneriesGrassBlock(Blocks.SHORT_GRASS, get(next))
+                () -> new GreeneriesGrassBlock(Blocks.SHORT_GRASS, () -> get(nextVariant).value().defaultBlockState())
             );
             if (generateBlockState)
                 grass_variants.add(holder);
