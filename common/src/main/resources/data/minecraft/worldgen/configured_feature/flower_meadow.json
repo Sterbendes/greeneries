@@ -30,22 +30,103 @@
                 }
               },
               {
+                "Name": "minecraft:tall_grass",
+                "Properties": {
+                  "half": "lower"
+                }
+              },
+              {
+                "Name": "minecraft:tall_grass",
+                "Properties": {
+                  "half": "lower"
+                }
+              },
+              {
+                "Name": "minecraft:tall_grass",
+                "Properties": {
+                  "half": "lower"
+                }
+              },
+              {
                 "Name": "minecraft:allium"
+              },
+              {
+                "Name": "minecraft:allium"
+              },
+              {
+                "Name": "greeneries:small_allium"
+              },
+              {
+                "Name": "greeneries:very_small_allium"
               },
               {
                 "Name": "minecraft:poppy"
               },
               {
+                "Name": "minecraft:poppy"
+              },
+              {
+                "Name": "greeneries:small_poppy"
+              },
+              {
+                "Name": "greeneries:very_small_poppy"
+              },
+              {
                 "Name": "minecraft:azure_bluet"
+              },
+              {
+                "Name": "minecraft:azure_bluet"
+              },
+              {
+                "Name": "greeneries:small_azure_bluet"
+              },
+              {
+                "Name": "greeneries:very_small_azure_bluet"
               },
               {
                 "Name": "minecraft:dandelion"
               },
               {
+                "Name": "minecraft:dandelion"
+              },
+              {
+                "Name": "greeneries:small_dandelion"
+              },
+              {
+                "Name": "greeneries:very_small_dandelion"
+              },
+              {
                 "Name": "minecraft:cornflower"
               },
               {
+                "Name": "minecraft:cornflower"
+              },
+              {
+                "Name": "greeneries:small_cornflower"
+              },
+              {
+                "Name": "greeneries:very_small_cornflower"
+              },
+              {
                 "Name": "minecraft:oxeye_daisy"
+              },
+              {
+                "Name": "minecraft:oxeye_daisy"
+              },
+              {
+                "Name": "greeneries:small_oxeye_daisy"
+              },
+              {
+                "Name": "greeneries:very_small_oxeye_daisy"
+              },
+              {
+                "Name": "minecraft:short_grass"
+              },
+              {
+                "Name": "minecraft:short_grass"
+              },
+              {
+                "Name": "minecraft:short_grass"
               },
               {
                 "Name": "minecraft:short_grass"

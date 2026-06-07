@@ -13,12 +13,14 @@
                   "Name": "minecraft:poppy"
                 },
                 "weight": 9
-              },              {
+              },
+              {
                 "data": {
                   "Name": "greeneries:small_poppy"
                 },
                 "weight": 6
-              },              {
+              },
+              {
                 "data": {
                   "Name": "greeneries:very_small_poppy"
                 },
