@@ -65,6 +65,9 @@ public abstract class ModBlocks {
             () -> new GreeneriesGrassBlock(Blocks.FERN, mediumRoyalFern));
 
         registerFlowers();
+
+        register("bushy_moss_carpet", null, null,
+        ()-> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MOSS_CARPET)));
     }
 
     private static void registerVanillaGrassVariants() {

@@ -1,0 +1,7 @@
+{
+  "parent": "greeneries:block/custommodels/bushy_carpet",
+  "textures": {
+    "carpet": "greeneries:block/moss/bushy_moss_carpet",
+    "cross": "greeneries:block/moss/moss_hair"
+  }
+}
