@@ -2,6 +2,7 @@
 	"format_version": "1.21.6",
 	"credit": "Made with Blockbench by Oslypsis",
 	"ambientocclusion": false,
+	"parent": "block/thin_block",
 	"textures": {
 		"particle": "#carpet",
 		"carpet": "#carpet",
