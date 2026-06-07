@@ -83,11 +83,11 @@ public class DataGenerator {
             @Override
             protected void addTags(HolderLookup.@NotNull Provider provider) {
                 var smallFlowerBuilder = TagBuilder.create();
-                for (Holder<Block> smallFlower : ModBlocks.small_flowers) {
+                for (Holder<Block> smallFlower : ModBlocks.SMALL_FLOWERS) {
                     smallFlowerBuilder.addElement(Objects.requireNonNull(smallFlower.getKey()).location());
                 }
                 var verySmallFlowerBuilder = TagBuilder.create();
-                for (Holder<Block> verySmallFlower : ModBlocks.small_flowers) {
+                for (Holder<Block> verySmallFlower : ModBlocks.SMALL_FLOWERS) {
                     verySmallFlowerBuilder.addElement(Objects.requireNonNull(verySmallFlower.getKey()).location());
                 }
                 this.builders.put(
@@ -123,7 +123,7 @@ public class DataGenerator {
 
             @Override
             protected void registerStatesAndModels() {
-                for (var blockHolder : ModBlocks.grass_variants) {
+                for (var blockHolder : ModBlocks.GRASS_VARIANTS) {
                     var builder = this.getVariantBuilder(blockHolder.value());
                     var modelLocation = Objects.requireNonNull(blockHolder.getKey()).location().withPrefix("block/");
 
@@ -132,7 +132,7 @@ public class DataGenerator {
                     this.registeredBlocks.put(blockHolder.value(), builder);
                 }
 
-                for (var blockHolder : ModBlocks.small_flowers) {
+                for (var blockHolder : ModBlocks.SMALL_FLOWERS) {
                     var location = Objects.requireNonNull(blockHolder.getKey()).location();
                     this.itemModels().generatedModels.put(
                         location,
@@ -146,7 +146,7 @@ public class DataGenerator {
                     register(blockHolder.value(), location, "block/small_flowers/", "1");
                     register(blockHolder.value(), location, "block/small_flowers/", "2");
                 }
-                for (var blockHolder : ModBlocks.very_small_flowers) {
+                for (var blockHolder : ModBlocks.VERY_SMALL_FLOWERS) {
                     var location = Objects.requireNonNull(blockHolder.getKey()).location();
                     this.itemModels().generatedModels.put(
                         location,

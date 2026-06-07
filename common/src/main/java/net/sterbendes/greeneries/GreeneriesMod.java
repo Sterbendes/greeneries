@@ -50,13 +50,13 @@ public class GreeneriesMod {
     }
 
     private static void registerCompostables() {
-        for (Holder<Block> grassVariant : ModBlocks.grass_variants) {
+        for (Holder<Block> grassVariant : ModBlocks.GRASS_VARIANTS) {
             platform.setCompostable(grassVariant, 0.4f);
         }
-        for (Holder<Block> smallFlower : ModBlocks.small_flowers) {
+        for (Holder<Block> smallFlower : ModBlocks.SMALL_FLOWERS) {
             platform.setCompostable(smallFlower, 0.4f);
         }
-        for (Holder<Block> verySmallFlower : ModBlocks.very_small_flowers) {
+        for (Holder<Block> verySmallFlower : ModBlocks.VERY_SMALL_FLOWERS) {
             platform.setCompostable(verySmallFlower, 0.3f);
         }
         for (Holder<Block> fern : ModBlocks.getFiltered("fern")) {

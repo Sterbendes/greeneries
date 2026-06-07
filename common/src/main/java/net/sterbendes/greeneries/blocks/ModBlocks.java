@@ -3,6 +3,7 @@ package net.sterbendes.greeneries.blocks;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
@@ -14,19 +15,25 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 import java.util.function.Supplier;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static net.sterbendes.greeneries.GreeneriesMod.platform;
 import static net.sterbendes.greeneries.blocks.ModBlockColors.*;
 
 public abstract class ModBlocks {
 
-    private static final Map<String, Holder<Block>> allGreeneriesBlocks = new LinkedHashMap<>();
+    private static final Map<String, Holder<Block>> ALL_GREENERIES_BLOCKS = new LinkedHashMap<>();
 
-    public static final List<Holder<Block>> grass_variants = new ArrayList<>();
+    public static final List<Holder<Block>> GRASS_VARIANTS = new ArrayList<>();
 
-    public static final List<Holder<Block>> small_flowers = new ArrayList<>();
+    public static final List<FlowerBlock> FLOWERS = Stream.of("allium", "azure_bluet", "blue_orchid", "cornflower",
+            "dandelion", "lily_of_the_valley", "orange_tulip", "oxeye_daisy", "pink_tulip", "poppy", "red_tulip",
+            "white_tulip").map(s -> BuiltInRegistries.BLOCK.get(ResourceLocation.withDefaultNamespace(s)))
+        .map(block -> (FlowerBlock) block).toList();
 
-    public static final List<Holder<Block>> very_small_flowers = new ArrayList<>();
+    public static final List<Holder<Block>> SMALL_FLOWERS = new ArrayList<>();
+
+    public static final List<Holder<Block>> VERY_SMALL_FLOWERS = new ArrayList<>();
 
 
     // REEDS
@@ -67,21 +74,21 @@ public abstract class ModBlocks {
         registerFlowers();
 
         register("bushy_moss_carpet", null, null,
-        ()-> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MOSS_CARPET)));
+            () -> new CarpetBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.MOSS_CARPET)));
     }
 
     private static void registerVanillaGrassVariants() {
-        grass_variants.add(register(
+        GRASS_VARIANTS.add(register(
             "very_short_grass",
             VARYING_GRASS_BLOCK_COLOR, GRASS_ITEM_COLOR,
             () -> new GreeneriesGrassBlock(Blocks.SHORT_GRASS, Blocks.SHORT_GRASS)
         ));
-        grass_variants.add(register(
+        GRASS_VARIANTS.add(register(
             "bushy_grass",
             VARYING_GRASS_BLOCK_COLOR, GRASS_ITEM_COLOR,
             () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { }
         ));
-        grass_variants.add(register(
+        GRASS_VARIANTS.add(register(
             "medium_grass",
             VARYING_GRASS_BLOCK_COLOR, GRASS_ITEM_COLOR,
             () -> new TallGrassBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SHORT_GRASS)) { }
@@ -89,18 +96,13 @@ public abstract class ModBlocks {
     }
 
     private static void registerFlowers() {
-        var flowerNames = List.of("allium", "azure_bluet", "blue_orchid", "cornflower", "dandelion",
-            "lily_of_the_valley", "orange_tulip", "oxeye_daisy", "pink_tulip", "poppy", "red_tulip", "white_tulip");
+        for (var flowerBlock : FLOWERS) {
+            String path = BuiltInRegistries.BLOCK.getKey(flowerBlock).getPath();
 
-        for (Block block : BuiltInRegistries.BLOCK) {
-            String path = BuiltInRegistries.BLOCK.getKey(block).getPath();
-            if (!flowerNames.contains(path)) continue;
-
-            var flowerBlock = (FlowerBlock) block;
-            small_flowers.add(register("small_" + path, null, null,
+            SMALL_FLOWERS.add(register("small_" + path, null, null,
                 () -> new FlowerBlock(flowerBlock.getSuspiciousEffects(),
                     BlockBehaviour.Properties.ofFullCopy(flowerBlock))));
-            very_small_flowers.add(register("very_small_" + path, null, null,
+            VERY_SMALL_FLOWERS.add(register("very_small_" + path, null, null,
                 () -> new FlowerBlock(flowerBlock.getSuspiciousEffects(),
                     BlockBehaviour.Properties.ofFullCopy(flowerBlock))));
         }
@@ -111,7 +113,8 @@ public abstract class ModBlocks {
         registerGrassVariants(name, VARYING_GRASS_BLOCK_COLOR, GRASS_ITEM_COLOR, true, variants);
     }
 
-    public static void registerGrassVariants(String name, @Nullable GBlockColor blockTint, @Nullable GItemColor itemTint,
+    public static void registerGrassVariants(String name, @Nullable GBlockColor blockTint,
+                                             @Nullable GItemColor itemTint,
                                              boolean generateBlockState, String... variants) {
         for (int i = 0; i < variants.length; i++) {
             var variant = variants[i];
@@ -123,7 +126,7 @@ public abstract class ModBlocks {
                 () -> new GreeneriesGrassBlock(Blocks.SHORT_GRASS, () -> get(nextVariant).value().defaultBlockState())
             );
             if (generateBlockState)
-                grass_variants.add(holder);
+                GRASS_VARIANTS.add(holder);
         }
     }
 
@@ -139,20 +142,20 @@ public abstract class ModBlocks {
         if (blockTint != null && platform.isClient()) platform.setBlockColor(holder::value, blockTint);
         if (itemTint != null && platform.isClient()) platform.setItemColor(holder::value, itemTint::getColor);
 
-        allGreeneriesBlocks.put(name, holder);
+        ALL_GREENERIES_BLOCKS.put(name, holder);
         return holder;
     }
 
     public static Collection<Holder<Block>> getAllGreeneriesBlocks() {
-        return allGreeneriesBlocks.values();
+        return ALL_GREENERIES_BLOCKS.values();
     }
 
     public static Holder<Block> get(@Nullable String name) {
-        return allGreeneriesBlocks.get(name);
+        return ALL_GREENERIES_BLOCKS.get(name);
     }
 
     public static Collection<Holder<Block>> getFiltered(String contains) {
-        return allGreeneriesBlocks.entrySet().stream()
+        return ALL_GREENERIES_BLOCKS.entrySet().stream()
             .filter(it -> it.getKey().contains(contains))
             .map(Map.Entry::getValue).collect(Collectors.toCollection(ArrayList::new));
     }
