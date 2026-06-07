@@ -51,4 +51,6 @@ public interface GreeneriesPlatform {
     }
 
     void addFeature(TagKey<Biome> biomes, ResourceKey<PlacedFeature> feature, @Nullable TagKey<Biome> deniedBiomes);
+
+    void setCompostable(Holder<? extends ItemLike> compostable, float chance);
 }

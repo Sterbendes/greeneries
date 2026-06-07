@@ -1,0 +1,136 @@
+{
+  "values": {
+    "greeneries:bushy_blue_grass": {
+      "chance": 0.4
+    },
+    "greeneries:bushy_common_bent": {
+      "chance": 0.4
+    },
+    "greeneries:bushy_grass": {
+      "chance": 0.4
+    },
+    "greeneries:bushy_red_fescue": {
+      "chance": 0.4
+    },
+    "greeneries:cattail": {
+      "chance": 0.65
+    },
+    "greeneries:medium_eagle_fern": {
+      "chance": 0.5
+    },
+    "greeneries:medium_grass": {
+      "chance": 0.4
+    },
+    "greeneries:medium_red_fescue": {
+      "chance": 0.4
+    },
+    "greeneries:medium_royal_fern": {
+      "chance": 0.5
+    },
+    "greeneries:reed": {
+      "chance": 0.65
+    },
+    "greeneries:short_blue_grass": {
+      "chance": 0.4
+    },
+    "greeneries:short_common_bent": {
+      "chance": 0.4
+    },
+    "greeneries:short_red_fescue": {
+      "chance": 0.4
+    },
+    "greeneries:short_royal_fern": {
+      "chance": 0.5
+    },
+    "greeneries:small_allium": {
+      "chance": 0.4
+    },
+    "greeneries:small_azure_bluet": {
+      "chance": 0.4
+    },
+    "greeneries:small_blue_orchid": {
+      "chance": 0.4
+    },
+    "greeneries:small_cornflower": {
+      "chance": 0.4
+    },
+    "greeneries:small_dandelion": {
+      "chance": 0.4
+    },
+    "greeneries:small_lily_of_the_valley": {
+      "chance": 0.4
+    },
+    "greeneries:small_orange_tulip": {
+      "chance": 0.4
+    },
+    "greeneries:small_oxeye_daisy": {
+      "chance": 0.4
+    },
+    "greeneries:small_pink_tulip": {
+      "chance": 0.4
+    },
+    "greeneries:small_poppy": {
+      "chance": 0.4
+    },
+    "greeneries:small_red_tulip": {
+      "chance": 0.4
+    },
+    "greeneries:small_white_tulip": {
+      "chance": 0.4
+    },
+    "greeneries:tall_eagle_fern": {
+      "chance": 0.5
+    },
+    "greeneries:tall_royal_fern": {
+      "chance": 0.5
+    },
+    "greeneries:very_short_blue_grass": {
+      "chance": 0.4
+    },
+    "greeneries:very_short_common_bent": {
+      "chance": 0.4
+    },
+    "greeneries:very_short_grass": {
+      "chance": 0.4
+    },
+    "greeneries:very_short_red_fescue": {
+      "chance": 0.4
+    },
+    "greeneries:very_small_allium": {
+      "chance": 0.3
+    },
+    "greeneries:very_small_azure_bluet": {
+      "chance": 0.3
+    },
+    "greeneries:very_small_blue_orchid": {
+      "chance": 0.3
+    },
+    "greeneries:very_small_cornflower": {
+      "chance": 0.3
+    },
+    "greeneries:very_small_dandelion": {
+      "chance": 0.3
+    },
+    "greeneries:very_small_lily_of_the_valley": {
+      "chance": 0.3
+    },
+    "greeneries:very_small_orange_tulip": {
+      "chance": 0.3
+    },
+    "greeneries:very_small_oxeye_daisy": {
+      "chance": 0.3
+    },
+    "greeneries:very_small_pink_tulip": {
+      "chance": 0.3
+    },
+    "greeneries:very_small_poppy": {
+      "chance": 0.3
+    },
+    "greeneries:very_small_red_tulip": {
+      "chance": 0.3
+    },
+    "greeneries:very_small_white_tulip": {
+      "chance": 0.3
+    }
+  }
+}

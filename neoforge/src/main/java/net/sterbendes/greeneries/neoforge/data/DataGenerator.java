@@ -1,26 +1,35 @@
 package net.sterbendes.greeneries.neoforge.data;
 
+import net.minecraft.core.Holder;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.HolderSet;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataProvider;
+import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.LootTableProvider;
+import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagBuilder;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.neoforged.neoforge.client.model.generators.*;
+import net.neoforged.neoforge.common.data.DataMapProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.common.world.BiomeModifier;
 import net.neoforged.neoforge.common.world.BiomeModifiers;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
+import net.neoforged.neoforge.registries.datamaps.builtin.Compostable;
+import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
 import net.sterbendes.greeneries.BiomeModifierFeatureEntry;
 import net.sterbendes.greeneries.GreeneriesMod;
 import net.sterbendes.greeneries.blocks.ModBlocks;
+import net.sterbendes.greeneries.neoforge.ModNeoforge;
 import org.jetbrains.annotations.ApiStatus;
 import org.jetbrains.annotations.NotNull;
 
@@ -28,6 +37,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 
 public class DataGenerator {
 
@@ -35,14 +45,60 @@ public class DataGenerator {
 
     public static void onGatherData(@NotNull GatherDataEvent event) {
         var registries = event.getLookupProvider();
-        event.getGenerator().addProvider(
+        var generator = event.getGenerator();
+
+        generator.addProvider(
             true,
             (DataProvider.Factory<LootTableProvider>) output -> new LootTableProvider(output, Set.of(), List.of(
                 new LootTableProvider.SubProviderEntry(LootTableSubProv::new, LootContextParamSets.BLOCK)
             ), registries)
         );
-        event.getGenerator().addProvider(true, provideFlowerBlockStates(event.getExistingFileHelper()));
+        generator.addProvider(true, provideFlowerBlockStates(event.getExistingFileHelper()));
+        generator.addProvider(true, provideDataMaps(generator.getPackOutput(), event.getLookupProvider()));
+        generator.addProvider(true, provideTags(generator.getPackOutput(), event.getLookupProvider(),
+            event.getExistingFileHelper()));
         event.createDatapackRegistryObjects(generateBiomeModifiers());
+    }
+
+    private static DataMapProvider provideDataMaps(PackOutput output,
+                                                   CompletableFuture<HolderLookup.Provider> provider) {
+        return new DataMapProvider(output, provider) {
+            @Override
+            protected void gather(HolderLookup.@NotNull Provider provider) {
+                for (var entry : ModNeoforge.compostables.object2FloatEntrySet()) {
+                    this.builder(NeoForgeDataMaps.COMPOSTABLES)
+                        .add(entry.getKey().value().asItem().builtInRegistryHolder(),
+                            new Compostable(entry.getFloatValue()), false);
+                }
+            }
+        };
+    }
+
+    private static TagsProvider<Block> provideTags(
+        PackOutput output,
+        CompletableFuture<HolderLookup.Provider> provider,
+        ExistingFileHelper existingFileHelper
+    ) {
+        return new TagsProvider<>(output, Registries.BLOCK, provider, GreeneriesMod.modID, existingFileHelper) {
+            @Override
+            protected void addTags(HolderLookup.@NotNull Provider provider) {
+                var smallFlowerBuilder = TagBuilder.create();
+                for (Holder<Block> smallFlower : ModBlocks.small_flowers) {
+                    smallFlowerBuilder.addElement(Objects.requireNonNull(smallFlower.getKey()).location());
+                }
+                var verySmallFlowerBuilder = TagBuilder.create();
+                for (Holder<Block> verySmallFlower : ModBlocks.small_flowers) {
+                    verySmallFlowerBuilder.addElement(Objects.requireNonNull(verySmallFlower.getKey()).location());
+                }
+                this.builders.put(
+                    ResourceLocation.fromNamespaceAndPath(GreeneriesMod.modID, "small_flowers"),
+                    smallFlowerBuilder);
+                this.builders.put(
+                    ResourceLocation.fromNamespaceAndPath(GreeneriesMod.modID, "very_small_flowers"),
+                    verySmallFlowerBuilder
+                );
+            }
+        };
     }
 
     private static DataProvider.@NotNull Factory<BlockStateProvider> provideFlowerBlockStates(
@@ -67,12 +123,12 @@ public class DataGenerator {
 
             @Override
             protected void registerStatesAndModels() {
-                for (var blockHolder : ModBlocks.generateSimpleBlockstates) {
+                for (var blockHolder : ModBlocks.grass_variants) {
                     var builder = this.getVariantBuilder(blockHolder.value());
                     var modelLocation = Objects.requireNonNull(blockHolder.getKey()).location().withPrefix("block/");
 
                     builder.forAllStates(state -> ConfiguredModel.builder()
-                            .modelFile(new ModelFile.ExistingModelFile(modelLocation, helper)).build());
+                        .modelFile(new ModelFile.ExistingModelFile(modelLocation, helper)).build());
                     this.registeredBlocks.put(blockHolder.value(), builder);
                 }
 

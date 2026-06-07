@@ -6,10 +6,23 @@
         "type": "minecraft:simple_block",
         "config": {
           "to_place": {
-            "type": "minecraft:simple_state_provider",
-            "state": {
-              "Name": "greeneries:cattail"
-            }
+            "type": "minecraft:noise_provider",
+            "noise": {
+              "amplitudes": [
+                1
+              ],
+              "firstOctave": 0
+            },
+            "scale": 0.3,
+            "seed": -1632505059,
+            "states": [
+              {
+                "Name": "greeneries:reed"
+              },
+              {
+                "Name": "greeneries:cattail"
+              }
+            ]
           }
         }
       },
@@ -36,8 +49,8 @@
         }
       ]
     },
-    "tries": 96,
-    "xz_spread": 6,
+    "tries": 128,
+    "xz_spread": 7,
     "y_spread": 1
   }
 }

@@ -1,5 +1,6 @@
 package net.sterbendes.greeneries.fabric;
 
+import net.fabricmc.api.EnvType;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.biome.v1.BiomeModifications;
 import net.fabricmc.fabric.api.biome.v1.BiomeSelectionContext;
@@ -8,9 +9,11 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientLifecycleEvents;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
+import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.item.ItemColor;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.core.Holder;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tags.TagKey;
@@ -18,6 +21,7 @@ import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.sterbendes.greeneries.GreeneriesMod;
@@ -48,6 +52,11 @@ public class ModFabric implements ModInitializer {
         }
 
         @Override
+        public void setCompostable(Holder<? extends ItemLike> compostable, float chance) {
+            ComposterBlock.COMPOSTABLES.put(compostable.value(), chance);
+        }
+
+        @Override
         public void onServerStart(Consumer<MinecraftServer> consumer) {
             ServerLifecycleEvents.SERVER_STARTING.register(consumer::accept);
         }
@@ -71,6 +80,11 @@ public class ModFabric implements ModInitializer {
         @Override
         public void setBlockColor(Supplier<Block> block, GBlockColor color) {
             onClientStart(mc -> ColorProviderRegistry.BLOCK.register(color::getColor, block.get()));
+        }
+
+        @Override
+        public boolean isClient() {
+            return FabricLoader.getInstance().getEnvironmentType() == EnvType.CLIENT;
         }
 
         @Override
